@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Show Tools — Professional tools and software for live show production. Monitoring, control, and workflow enhancement for VJs and lighting designers.">
+  <title>Show Tools — Professional Live Show Software</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
+</head>
+<body>
+
+  <!-- Custom Cursor -->
+  <div class="cursor-dot"></div>
+  <div class="cursor-ring"></div>
+
+  <!-- Background Canvas -->
+  <canvas id="bg-canvas"></canvas>
+  <div class="scan-lines"></div>
+  <div class="grain-overlay"></div>
+
+  <!-- Navigation -->
+  <nav class="nav">
+    <a href="index.html" class="nav-logo">
+      <span class="logo-icon">ST</span>
+      <span>SHOW<span class="logo-accent">TOOLS</span></span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html" class="active">Home</a></li>
+      <li><a href="products.html">Products</a></li>
+      <li><a href="downloads.html">Downloads</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <button class="nav-toggle" aria-label="Toggle navigation">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </nav>
+
+  <!-- Page Wrapper -->
+  <div class="page-wrapper">
+
+    <!-- Hero Section -->
+    <section class="hero section">
+      <div class="hero-content">
+        <div class="hero-tag">
+          <span class="pulse-dot"></span>
+          Now Available — Resolume HUD v1.0
+        </div>
+        <h1>Tools Built for <span class="highlight">Live Shows</span></h1>
+        <p class="hero-subtitle">
+          Professional-grade software for VJs, lighting designers, and live show operators. 
+          Monitor, control, and enhance your workflow — in real time.
+        </p>
+        <div class="hero-actions">
+          <a href="downloads.html" class="btn btn-primary">
+            <span class="btn-icon">↓</span> Download Now
+          </a>
+          <a href="products.html" class="btn btn-ghost">
+            View Products <span class="btn-icon">→</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Featured Product Section -->
+    <section class="section" id="featured">
+      <div class="section-inner">
+        <div class="reveal">
+          <div class="product-showcase">
+            <div class="product-header">
+              <div>
+                <div class="product-badge">
+                  <span class="pulse-dot"></span> Latest Release
+                </div>
+                <h2 class="product-title" style="margin-top: 1rem;">Resolume HUD — Widget Creator</h2>
+                <p class="product-subtitle">
+                  Create custom overlay widgets mapped to Resolume parameters via OSC. 
+                  Monitor your effects in real time without switching views — see color changes, 
+                  parameter values, and effect states at a glance, even in Show Mode.
+                </p>
+              </div>
+              <a href="downloads.html" class="btn btn-primary">
+                <span class="btn-icon">↓</span> Download
+              </a>
+            </div>
+
+            <!-- Preview Area -->
+            <div class="product-preview">
+              <div class="product-preview-placeholder">
+                <div class="icon-lg">◉</div>
+                <p>PRODUCT PREVIEW</p>
+                <p style="margin-top: 0.5rem; font-size: 0.7rem;">Screenshots & video demo coming soon</p>
+              </div>
+            </div>
+
+            <!-- Stats -->
+            <div class="product-stats">
+              <div class="stat">
+                <span class="stat-value">OSC</span>
+                <span class="stat-label">Protocol</span>
+              </div>
+              <div class="stat">
+                <span class="stat-value">Real-Time</span>
+                <span class="stat-label">Monitoring</span>
+              </div>
+              <div class="stat">
+                <span class="stat-value">Custom</span>
+                <span class="stat-label">Widgets</span>
+              </div>
+              <div class="stat">
+                <span class="stat-value">Windows</span>
+                <span class="stat-label">Platform</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="section">
+      <div class="section-inner">
+        <div class="section-header reveal">
+          <div class="section-label">Key Features</div>
+          <h2 class="section-title">Why Resolume HUD?</h2>
+          <p class="section-description">
+            Built for the demands of live performance, where every second counts 
+            and screen real estate is precious.
+          </p>
+        </div>
+
+        <div class="features-grid">
+          <div class="feature-card reveal reveal-delay-1">
+            <div class="feature-icon">◎</div>
+            <h3>Custom Widget Creator</h3>
+            <p>
+              Design your own overlay widgets tailored to your specific setup. 
+              Map any Resolume parameter to a visual indicator that stays 
+              visible on your screen at all times.
+            </p>
+          </div>
+
+          <div class="feature-card reveal reveal-delay-2">
+            <div class="feature-icon">⟐</div>
+            <h3>OSC-Driven Architecture</h3>
+            <p>
+              Built on Open Sound Control for reliable, low-latency 
+              communication with Resolume. Real-time parameter feedback 
+              with no perceptible delay.
+            </p>
+          </div>
+
+          <div class="feature-card reveal reveal-delay-3">
+            <div class="feature-icon">◈</div>
+            <h3>Show Mode Monitoring</h3>
+            <p>
+              Keep critical parameters visible even when Resolume is in 
+              Show Mode. Monitor colorize effects, opacity levels, and 
+              custom parameters without opening effect panels.
+            </p>
+          </div>
+
+          <div class="feature-card reveal reveal-delay-4">
+            <div class="feature-icon">⬡</div>
+            <h3>MIDI-Aware Feedback</h3>
+            <p>
+              See real-time visual feedback as you twist encoders and push 
+              faders. Color boxes, value readouts, and state indicators 
+              that respond instantly to your MIDI input.
+            </p>
+          </div>
+
+          <div class="feature-card reveal reveal-delay-1">
+            <div class="feature-icon">◇</div>
+            <h3>Lightweight Overlay</h3>
+            <p>
+              Runs as a transparent overlay on top of any application. 
+              Minimal CPU and GPU footprint — designed to run alongside 
+              demanding visual software without impacting performance.
+            </p>
+          </div>
+
+          <div class="feature-card reveal reveal-delay-2">
+            <div class="feature-icon">⏣</div>
+            <h3>Fully Customizable</h3>
+            <p>
+              Control widget size, position, color schemes, and display 
+              format. Build the heads-up display that matches your workflow 
+              and your aesthetic.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Quick About Section -->
+    <section class="section">
+      <div class="section-inner">
+        <div class="about-grid">
+          <div class="about-image-placeholder reveal">
+            <div class="product-preview-placeholder">
+              <div class="icon-lg" style="font-size: 4rem;">⚡</div>
+              <p style="margin-top: 1rem;">SHOW TOOLS</p>
+            </div>
+          </div>
+          <div class="about-content reveal">
+            <div class="section-label">About Show Tools</div>
+            <h2>Built by Show People,<br>for Show People</h2>
+            <p>
+              Show Tools is born from the stage — built by a live show operator 
+              who got tired of working around the limitations of existing software. 
+              Every tool we create solves a real problem that comes up during 
+              actual performances.
+            </p>
+            <p>
+              We believe your tools should adapt to your workflow, not the other way 
+              around. That's why everything we build is customizable, lightweight, 
+              and designed to stay out of your way until you need it.
+            </p>
+            <a href="about.html" class="btn btn-ghost" style="margin-top: 1rem;">
+              Learn More <span class="btn-icon">→</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="section" style="text-align: center;">
+      <div class="section-inner reveal">
+        <div class="section-label" style="justify-content: center;">
+          <span></span>Get Started
+        </div>
+        <h2 class="section-title" style="margin-bottom: 1rem;">Ready to Upgrade Your Show?</h2>
+        <p class="section-description" style="margin: 0 auto var(--space-md);">
+          Download Resolume HUD and start building your custom heads-up display today. 
+          Free to use — no accounts, no subscriptions, no strings.
+        </p>
+        <div class="hero-actions" style="opacity: 1; transform: none;">
+          <a href="downloads.html" class="btn btn-primary">
+            <span class="btn-icon">↓</span> Download Now
+          </a>
+          <a href="contact.html" class="btn btn-ghost">
+            Get in Touch <span class="btn-icon">→</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-left">
+        © 2026 Show Tools. All rights reserved.
+      </div>
+      <ul class="footer-links">
+        <li><a href="products.html">Products</a></li>
+        <li><a href="downloads.html">Downloads</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

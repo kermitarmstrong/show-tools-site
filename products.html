@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Show Tools Products — Browse our collection of professional live show software and tools.">
+  <title>Products — Show Tools</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
+</head>
+<body>
+
+  <div class="cursor-dot"></div>
+  <div class="cursor-ring"></div>
+  <canvas id="bg-canvas"></canvas>
+  <div class="scan-lines"></div>
+  <div class="grain-overlay"></div>
+
+  <!-- Navigation -->
+  <nav class="nav">
+    <a href="index.html" class="nav-logo">
+      <span class="logo-icon">ST</span>
+      <span>SHOW<span class="logo-accent">TOOLS</span></span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="products.html" class="active">Products</a></li>
+      <li><a href="downloads.html">Downloads</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <button class="nav-toggle" aria-label="Toggle navigation">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </nav>
+
+  <div class="page-wrapper">
+
+    <!-- Page Header -->
+    <section class="section page-header">
+      <div class="section-inner">
+        <div class="section-label" style="justify-content: center;"><span></span>Our Software</div>
+        <h1>Products</h1>
+        <p>Professional tools designed for the unique demands of live show production.</p>
+      </div>
+    </section>
+
+    <!-- Products List -->
+    <section class="section" style="padding-top: 0;">
+      <div class="section-inner">
+        <div class="products-list">
+
+          <!-- Product 1: Resolume HUD -->
+          <div class="product-card reveal">
+            <div class="product-card-image">
+              <div class="product-preview-placeholder">
+                <div class="icon-lg">◉</div>
+                <p>RESOLUME HUD</p>
+                <p style="margin-top: 0.5rem; font-size: 0.65rem;">Screenshot coming soon</p>
+              </div>
+            </div>
+            <div class="product-card-content">
+              <div>
+                <div class="product-badge" style="margin-bottom: 0.75rem;">
+                  <span class="pulse-dot"></span> Available Now
+                </div>
+                <h3>Resolume HUD — Widget Creator</h3>
+              </div>
+              <p>
+                Create custom overlay widgets mapped to Resolume parameters via OSC. 
+                Monitor colorize effects, parameter values, and effect states in real time — 
+                even in Show Mode. Build your own heads-up display tailored to your workflow.
+              </p>
+              <div class="product-card-tags">
+                <span class="tag">OSC</span>
+                <span class="tag">Real-Time</span>
+                <span class="tag">Customizable</span>
+                <span class="tag">Windows</span>
+              </div>
+              <div class="product-card-actions">
+                <a href="downloads.html#resolume-hud" class="btn btn-primary">
+                  <span class="btn-icon">↓</span> Download
+                </a>
+                <a href="downloads.html#resolume-hud" class="btn btn-ghost">
+                  Details <span class="btn-icon">→</span>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Placeholder: Coming Soon Product -->
+          <div class="product-card reveal" style="opacity: 0.5; pointer-events: none;">
+            <div class="product-card-image" style="border-style: dashed;">
+              <div class="product-preview-placeholder">
+                <div class="icon-lg">+</div>
+                <p>COMING SOON</p>
+              </div>
+            </div>
+            <div class="product-card-content">
+              <div>
+                <div class="product-badge" style="color: var(--text-dim); border-color: var(--border-subtle); background: var(--bg-card);">
+                  In Development
+                </div>
+                <h3 style="margin-top: 0.75rem; color: var(--text-secondary);">More Tools on the Way</h3>
+              </div>
+              <p>
+                We're actively developing new tools for the live show community. 
+                Have an idea or a pain point you'd love us to solve? We'd love to hear from you.
+              </p>
+              <div class="product-card-actions">
+                <a href="contact.html" class="btn btn-ghost" style="pointer-events: all; opacity: 1;">
+                  Suggest a Tool <span class="btn-icon">→</span>
+                </a>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-left">
+        © 2026 Show Tools. All rights reserved.
+      </div>
+      <ul class="footer-links">
+        <li><a href="products.html">Products</a></li>
+        <li><a href="downloads.html">Downloads</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

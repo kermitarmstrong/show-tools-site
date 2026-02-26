@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Contact Show Tools — Got a question, idea, or bug report? We'd love to hear from you.">
+  <title>Contact — Show Tools</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
+</head>
+<body>
+
+  <div class="cursor-dot"></div>
+  <div class="cursor-ring"></div>
+  <canvas id="bg-canvas"></canvas>
+  <div class="scan-lines"></div>
+  <div class="grain-overlay"></div>
+
+  <!-- Navigation -->
+  <nav class="nav">
+    <a href="index.html" class="nav-logo">
+      <span class="logo-icon">ST</span>
+      <span>SHOW<span class="logo-accent">TOOLS</span></span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="products.html">Products</a></li>
+      <li><a href="downloads.html">Downloads</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html" class="active">Contact</a></li>
+    </ul>
+    <button class="nav-toggle" aria-label="Toggle navigation">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </nav>
+
+  <div class="page-wrapper">
+
+    <!-- Page Header -->
+    <section class="section page-header">
+      <div class="section-inner">
+        <div class="section-label" style="justify-content: center;"><span></span>Reach Out</div>
+        <h1>Contact</h1>
+        <p>Got a question, feature request, bug report, or just want to say hey? We're all ears.</p>
+      </div>
+    </section>
+
+    <!-- Contact Content -->
+    <section class="section" style="padding-top: 0;">
+      <div class="section-inner">
+        <div class="contact-grid">
+
+          <!-- Contact Info -->
+          <div class="contact-info reveal">
+            <h2>Let's Talk</h2>
+            <p>
+              Whether you've found a bug, have an idea for a new tool, or just want 
+              to chat about live show tech — don't hesitate to reach out. 
+              Show Tools is built by the community, for the community.
+            </p>
+
+            <!-- Email Link -->
+            <a href="mailto:contact@show-tools.app" class="contact-link">
+              <div class="contact-link-icon">✉</div>
+              <div class="contact-link-text">
+                <h4>Email</h4>
+                <span>contact@show-tools.app</span>
+              </div>
+            </a>
+
+            <!-- GitHub -->
+            <a href="#" class="contact-link">
+              <div class="contact-link-icon">⟠</div>
+              <div class="contact-link-text">
+                <h4>GitHub</h4>
+                <span>Report issues & contribute</span>
+              </div>
+            </a>
+
+            <div style="margin-top: 2rem;">
+              <p style="font-family: var(--font-mono); font-size: 0.7rem; color: var(--text-dim); letter-spacing: 0.05em;">
+                Typical response time: 24–48 hours
+              </p>
+            </div>
+          </div>
+
+          <!-- Terminal Visual -->
+          <div class="contact-visual reveal">
+            <div class="terminal-window">
+              <div class="terminal-header">
+                <div class="terminal-dot red"></div>
+                <div class="terminal-dot yellow"></div>
+                <div class="terminal-dot green"></div>
+              </div>
+              <div class="terminal-body">
+                <p><span class="prompt">$</span> show-tools --version</p>
+                <p><span class="output">v1.0.0 — Resolume HUD</span></p>
+                <p>&nbsp;</p>
+                <p><span class="prompt">$</span> show-tools --status</p>
+                <p><span class="output">✓ OSC connected</span></p>
+                <p><span class="output">✓ Widgets active: 4</span></p>
+                <p><span class="output">✓ Monitoring: all clear</span></p>
+                <p>&nbsp;</p>
+                <p><span class="prompt">$</span> show-tools --contact</p>
+                <p><span class="output">→ contact@show-tools.app</span></p>
+                <p><span class="output">→ We'd love to hear from you.</span></p>
+                <p>&nbsp;</p>
+                <p><span class="prompt">$</span> <span class="terminal-typing" data-text="show-tools --next-release">_</span></p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ / Quick Answers -->
+    <section class="section">
+      <div class="section-inner">
+        <div class="section-header reveal">
+          <div class="section-label">Quick Answers</div>
+          <h2 class="section-title">Common Questions</h2>
+        </div>
+
+        <div class="features-grid">
+          <div class="feature-card reveal reveal-delay-1">
+            <div class="feature-icon">?</div>
+            <h3>Is it really free?</h3>
+            <p>
+              Yes. All Show Tools software is free to download and use. 
+              No accounts, no trials, no hidden costs. If that ever changes 
+              for a future product, it'll be clearly stated.
+            </p>
+          </div>
+
+          <div class="feature-card reveal reveal-delay-2">
+            <div class="feature-icon">⚠</div>
+            <h3>I found a bug</h3>
+            <p>
+              Please email us with a description of what happened, what you 
+              expected, and your system specs. Screenshots are hugely helpful. 
+              We'll get back to you as fast as we can.
+            </p>
+          </div>
+
+          <div class="feature-card reveal reveal-delay-3">
+            <div class="feature-icon">💡</div>
+            <h3>Can I request a feature?</h3>
+            <p>
+              Absolutely. The best features come from real operators. 
+              Send us your idea and we'll evaluate it — many of our planned 
+              tools started as community suggestions.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-left">
+        © 2026 Show Tools. All rights reserved.
+      </div>
+      <ul class="footer-links">
+        <li><a href="products.html">Products</a></li>
+        <li><a href="downloads.html">Downloads</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
