@@ -41,26 +41,19 @@
     <div class="modal">
       <button class="modal-close" id="modalClose">✕</button>
       <div class="modal-icon">🍺</div>
-      <h2 class="modal-title">Enjoying the tool?</h2>
-      <p class="modal-subtitle">This coding machine runs on Coors Light. Any additional fuel is more than appreciated.</p>
+      <h2 class="modal-title">Help Fuel The Machine?</h2>
       
-      <div class="modal-amounts">
-        <button class="amount-btn" data-amount="500">$5</button>
-        <button class="amount-btn" data-amount="1000">$10</button>
-        <button class="amount-btn" data-amount="2000">$20</button>
-        <div class="amount-custom">
-          <span class="amount-custom-prefix">$</span>
-          <input type="number" id="customAmount" class="amount-custom-input" placeholder="Custom" min="2.50" step="0.50">
-        </div>
-      </div>
-
       <div class="modal-actions">
-        <button class="btn btn-primary modal-btn-beer" id="beerBtn" disabled>
+        <button class="btn btn-primary modal-btn-beer modal-btn-beer-lg" id="beerBtn">
           <span class="btn-icon">🍺</span> Buy Me A Beer
         </button>
         <button class="btn btn-ghost modal-btn-skip" id="skipBtn">
           No Beer, Just the free download...I guess.
         </button>
+      </div>
+
+      <div class="modal-stripe-notice">
+        <span>🔒</span> Secure payment powered by Stripe. You'll be redirected to Stripe to complete your payment, then brought back here for your download.
       </div>
     </div>
   </div>
