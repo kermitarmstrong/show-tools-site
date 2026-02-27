@@ -3,7 +3,7 @@
    ============================================ */
 
 /* Stripe Payment Link */
-const STRIPE_LINK = 'https://buy.stripe.com/dRm7sD9wfdgF6CV59V8g002';
+const STRIPE_LINK = 'https://donate.stripe.com/dRm7sD9wfdgF6CV99V8g002';
 
 /* Direct download URL */
 const DOWNLOAD_URL = 'https://github.com/kermitarmstrong/resolume-hud/releases/latest/download/ResolumeHud.exe';
