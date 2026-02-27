@@ -1539,7 +1539,7 @@ img, video {
   min-width: 32px;
 }
 
-/* --- Page Transition --- */
+/* --- Page Transition (diagonal wipe) --- */
 .page-transition {
   position: fixed;
   top: 0;
@@ -1548,38 +1548,48 @@ img, video {
   height: 100%;
   z-index: 9999;
   pointer-events: none;
-  display: flex;
+  overflow: hidden;
 }
 
-.transition-panel {
-  flex: 1;
+.transition-slice {
+  position: absolute;
+  top: -10%;
+  left: -10%;
+  width: 120%;
+  height: 120%;
   background: var(--bg-secondary);
-  transform: scaleY(0);
-  transform-origin: bottom;
+  transform: translateX(-110%) skewX(-8deg);
+  transition: none;
 }
 
-.transition-panel:nth-child(1) { transition-delay: 0s; }
-.transition-panel:nth-child(2) { transition-delay: 0.05s; }
-.transition-panel:nth-child(3) { transition-delay: 0.1s; }
-.transition-panel:nth-child(4) { transition-delay: 0.15s; }
-.transition-panel:nth-child(5) { transition-delay: 0.2s; }
-
-.page-transition.entering .transition-panel {
-  animation: panelUp 0.5s var(--ease-in-out) forwards;
+.transition-slice:nth-child(2) {
+  background: var(--bg-tertiary);
 }
 
-.page-transition.exiting .transition-panel {
-  animation: panelDown 0.5s var(--ease-in-out) forwards;
+.page-transition.entering .transition-slice:nth-child(1) {
+  animation: sliceIn 0.45s var(--ease-in-out) forwards;
 }
 
-@keyframes panelUp {
-  0% { transform: scaleY(0); transform-origin: bottom; }
-  100% { transform: scaleY(1); transform-origin: bottom; }
+.page-transition.entering .transition-slice:nth-child(2) {
+  animation: sliceIn 0.45s var(--ease-in-out) 0.06s forwards;
 }
 
-@keyframes panelDown {
-  0% { transform: scaleY(1); transform-origin: top; }
-  100% { transform: scaleY(0); transform-origin: top; }
+.page-transition.exiting .transition-slice:nth-child(2) {
+  animation: sliceOut 0.4s var(--ease-in-out) forwards;
+}
+
+.page-transition.exiting .transition-slice:nth-child(1) {
+  animation: sliceOut 0.4s var(--ease-in-out) 0.06s forwards;
+}
+
+@keyframes sliceIn {
+  0%   { transform: translateX(-110%) skewX(-8deg); }
+  100% { transform: translateX(0%) skewX(-8deg); }
+}
+
+@keyframes sliceOut {
+  0%   { transform: translateX(0%) skewX(-8deg); }
+  100% { transform: translateX(110%) skewX(-8deg); }
 }
 
 /* --- Changelog --- */

@@ -15,10 +15,17 @@ document.addEventListener('DOMContentLoaded', () => {
   initChangelog();
 });
 
-/* --- Page Loader with Particles --- */
+/* --- Page Loader with Particles (first visit only) --- */
 function initPageLoader() {
   const loader = document.getElementById('pageLoader');
   if (!loader) return;
+
+  // Only show loader on first visit this session
+  if (sessionStorage.getItem('showtools_loaded')) {
+    loader.remove();
+    document.body.classList.add('page-ready');
+    return;
+  }
 
   const canvas = document.getElementById('loaderCanvas');
   const ctx = canvas.getContext('2d');
@@ -121,6 +128,7 @@ function initPageLoader() {
         loadingDone = true;
         loader.classList.add('loaded');
         document.body.classList.add('page-ready');
+        sessionStorage.setItem('showtools_loaded', 'true');
       }, 200);
     }
   }
@@ -422,10 +430,10 @@ function initPageTransitions() {
       requestAnimationFrame(() => {
         transition.classList.add('entering');
 
-        // Navigate after panels cover the screen
+        // Navigate after slices cover the screen
         setTimeout(() => {
           window.location.href = destination;
-        }, 600);
+        }, 450);
       });
     });
   });
