@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>404 — Show Tools</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
+</head>
+<body>
+
+  <!-- Page Loader -->
+  <div class="page-loader" id="pageLoader">
+    <canvas class="loader-canvas" id="loaderCanvas"></canvas>
+    <div class="loader-content">
+      <div class="loader-logo">SHOW<span class="logo-accent">TOOLS</span></div>
+    </div>
+    <div class="loader-progress">
+      <div class="loader-bar-track">
+        <div class="loader-bar-fill"></div>
+      </div>
+      <span class="loader-percent">0%</span>
+    </div>
+  </div>
+
+  <!-- Page Transition -->
+  <div class="page-transition" id="pageTransition">
+    <div class="transition-panel"></div>
+    <div class="transition-panel"></div>
+    <div class="transition-panel"></div>
+    <div class="transition-panel"></div>
+    <div class="transition-panel"></div>
+  </div>
+
+  <div class="cursor-dot"></div>
+  <div class="cursor-ring"></div>
+  <canvas id="bg-canvas"></canvas>
+  <div class="scan-lines"></div>
+  <div class="grain-overlay"></div>
+
+  <!-- Navigation -->
+  <nav class="nav">
+    <a href="index.html" class="nav-logo">
+      <span class="logo-icon">ST</span>
+      <span>SHOW<span class="logo-accent">TOOLS</span></span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="products.html">Products</a></li>
+      <li><a href="downloads.html">Downloads</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <button class="nav-toggle" aria-label="Toggle navigation">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </nav>
+
+  <div class="page-wrapper">
+    <section class="four-oh-four section">
+      <div>
+        <div class="four-oh-four-code">404</div>
+        <h2>Signal Lost</h2>
+        <p>The page you're looking for doesn't exist, was moved, or never made it to the stage.</p>
+        <a href="index.html" class="btn btn-primary">
+          <span class="btn-icon">←</span> Back to Home
+        </a>
+      </div>
+    </section>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-left">
+        © 2026 Show Tools. All rights reserved.
+      </div>
+      <ul class="footer-links">
+        <li><a href="products.html">Products</a></li>
+        <li><a href="downloads.html">Downloads</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

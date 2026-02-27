@@ -9,6 +9,29 @@
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
 </head>
 <body>
+  <!-- Page Loader -->
+  <div class="page-loader" id="pageLoader">
+    <canvas class="loader-canvas" id="loaderCanvas"></canvas>
+    <div class="loader-content">
+      <div class="loader-logo">SHOW<span class="logo-accent">TOOLS</span></div>
+    </div>
+    <div class="loader-progress">
+      <div class="loader-bar-track">
+        <div class="loader-bar-fill"></div>
+      </div>
+      <span class="loader-percent">0%</span>
+    </div>
+  </div>
+
+  <!-- Page Transition -->
+  <div class="page-transition" id="pageTransition">
+    <div class="transition-panel"></div>
+    <div class="transition-panel"></div>
+    <div class="transition-panel"></div>
+    <div class="transition-panel"></div>
+    <div class="transition-panel"></div>
+  </div>
+
 
   <!-- Custom Cursor -->
   <div class="cursor-dot"></div>
@@ -246,6 +269,21 @@
           <a href="contact.html" class="btn btn-ghost">
             Get in Touch <span class="btn-icon">→</span>
           </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Email Signup -->
+    <section class="section">
+      <div class="section-inner">
+        <div class="email-signup reveal">
+          <h3>Stay in the Loop</h3>
+          <p>Get notified when we release new tools, updates, and features. No spam — just the good stuff.</p>
+          <div class="email-signup-form">
+            <input type="email" class="email-signup-input" placeholder="your@email.com" disabled>
+            <button class="email-signup-btn" disabled>Notify Me</button>
+          </div>
+          <p class="email-signup-note">Coming soon — email list is being set up</p>
         </div>
       </div>
     </section>

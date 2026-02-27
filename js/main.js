@@ -1,16 +1,132 @@
 /* ============================================
    SHOW TOOLS — Main JavaScript
-   Animations, Particles, Cursor, Scroll Reveals
+   Loader, Transitions, Animations, Particles
    ============================================ */
 
 document.addEventListener('DOMContentLoaded', () => {
+  initPageLoader();
   initCanvas();
   initCustomCursor();
   initScrollReveal();
   initMobileNav();
   initNavActiveState();
   initTerminalTyping();
+  initPageTransitions();
+  initChangelog();
 });
+
+/* --- Page Loader with Particles --- */
+function initPageLoader() {
+  const loader = document.getElementById('pageLoader');
+  if (!loader) return;
+
+  const canvas = document.getElementById('loaderCanvas');
+  const ctx = canvas.getContext('2d');
+  const barFill = document.querySelector('.loader-bar-fill');
+  const percentText = document.querySelector('.loader-percent');
+
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+
+  // Loader particles
+  const particles = [];
+  const particleCount = 80;
+
+  for (let i = 0; i < particleCount; i++) {
+    const cx = canvas.width / 2;
+    const cy = canvas.height / 2;
+    const angle = Math.random() * Math.PI * 2;
+    const radius = Math.random() * 200;
+    particles.push({
+      x: cx + Math.cos(angle) * radius,
+      y: cy + Math.sin(angle) * radius,
+      targetX: Math.random() * canvas.width,
+      targetY: Math.random() * canvas.height,
+      size: Math.random() * 2.5 + 0.5,
+      opacity: Math.random() * 0.8 + 0.2,
+      speed: Math.random() * 0.02 + 0.005,
+      progress: 0,
+    });
+  }
+
+  let progress = 0;
+  let loadingDone = false;
+
+  function drawLoader() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    particles.forEach((p) => {
+      // Move particles outward from center as loading progresses
+      p.progress += p.speed;
+      if (p.progress > 1) p.progress = 1;
+
+      const ease = 1 - Math.pow(1 - p.progress, 3);
+      const startX = canvas.width / 2 + (p.x - canvas.width / 2) * 0.3;
+      const startY = canvas.height / 2 + (p.y - canvas.height / 2) * 0.3;
+      const currentX = startX + (p.targetX - startX) * ease;
+      const currentY = startY + (p.targetY - startY) * ease;
+
+      ctx.fillStyle = `rgba(0, 240, 255, ${p.opacity * ease})`;
+      ctx.beginPath();
+      ctx.arc(currentX, currentY, p.size, 0, Math.PI * 2);
+      ctx.fill();
+
+      // Draw connections
+      particles.forEach((p2) => {
+        if (p === p2) return;
+        const ease2 = 1 - Math.pow(1 - p2.progress, 3);
+        const x2 = canvas.width / 2 + (p2.targetX - canvas.width / 2) * ease2;
+        const y2 = canvas.height / 2 + (p2.targetY - canvas.height / 2) * ease2;
+        const dx = currentX - x2;
+        const dy = currentY - y2;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        if (dist < 120) {
+          ctx.strokeStyle = `rgba(0, 240, 255, ${(1 - dist / 120) * 0.06 * ease})`;
+          ctx.lineWidth = 0.5;
+          ctx.beginPath();
+          ctx.moveTo(currentX, currentY);
+          ctx.lineTo(x2, y2);
+          ctx.stroke();
+        }
+      });
+    });
+
+    if (!loadingDone) {
+      requestAnimationFrame(drawLoader);
+    }
+  }
+
+  drawLoader();
+
+  // Simulate loading progress
+  const loadDuration = 1800; // ms
+  const startTime = Date.now();
+
+  function updateProgress() {
+    const elapsed = Date.now() - startTime;
+    progress = Math.min(elapsed / loadDuration, 1);
+
+    // Ease the progress for a nice feel
+    const easedProgress = 1 - Math.pow(1 - progress, 3);
+    const percent = Math.round(easedProgress * 100);
+
+    barFill.style.width = percent + '%';
+    percentText.textContent = percent + '%';
+
+    if (progress < 1) {
+      requestAnimationFrame(updateProgress);
+    } else {
+      // Loading complete
+      setTimeout(() => {
+        loadingDone = true;
+        loader.classList.add('loaded');
+        document.body.classList.add('page-ready');
+      }, 200);
+    }
+  }
+
+  updateProgress();
+}
 
 /* --- Animated Grid Canvas Background --- */
 function initCanvas() {
@@ -107,7 +223,6 @@ function initCanvas() {
       p.x += p.vx;
       p.y += p.vy;
 
-      // Wrap around
       if (p.x < 0) p.x = width;
       if (p.x > width) p.x = 0;
       if (p.y < 0) p.y = height;
@@ -150,7 +265,6 @@ function initCustomCursor() {
   const ring = document.querySelector('.cursor-ring');
   if (!dot || !ring) return;
 
-  // Check if touch device
   if ('ontouchstart' in window) {
     dot.style.display = 'none';
     ring.style.display = 'none';
@@ -176,8 +290,7 @@ function initCustomCursor() {
   }
   animate();
 
-  // Hover effect on interactive elements
-  const hoverTargets = document.querySelectorAll('a, button, .btn, .feature-card, .product-card, .download-item, .contact-link');
+  const hoverTargets = document.querySelectorAll('a, button, .btn, .feature-card, .product-card, .download-item, .contact-link, .changelog-toggle');
   hoverTargets.forEach((el) => {
     el.addEventListener('mouseenter', () => ring.classList.add('hovering'));
     el.addEventListener('mouseleave', () => ring.classList.remove('hovering'));
@@ -218,7 +331,6 @@ function initMobileNav() {
     links.classList.toggle('open');
   });
 
-  // Close nav when clicking a link
   links.querySelectorAll('a').forEach((link) => {
     link.addEventListener('click', () => {
       toggle.classList.remove('active');
@@ -274,6 +386,63 @@ function initTerminalTyping() {
   });
 }
 
+/* --- Page Transitions --- */
+function initPageTransitions() {
+  const transition = document.getElementById('pageTransition');
+  if (!transition) return;
+
+  // On page load, play the exit (reveal) animation
+  transition.classList.add('exiting');
+
+  // Intercept all internal navigation links
+  const links = document.querySelectorAll('a[href]');
+  links.forEach((link) => {
+    const href = link.getAttribute('href');
+
+    // Skip external links, anchors, mailto, download triggers, and javascript
+    if (!href ||
+        href.startsWith('#') ||
+        href.startsWith('http') ||
+        href.startsWith('mailto') ||
+        href.startsWith('javascript') ||
+        link.hasAttribute('download') ||
+        link.classList.contains('donation-trigger') ||
+        link.getAttribute('target') === '_blank') {
+      return;
+    }
+
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      const destination = href;
+
+      // Play entering animation
+      transition.classList.remove('exiting');
+      
+      // Small delay to reset animation
+      requestAnimationFrame(() => {
+        transition.classList.add('entering');
+
+        // Navigate after panels cover the screen
+        setTimeout(() => {
+          window.location.href = destination;
+        }, 600);
+      });
+    });
+  });
+}
+
+/* --- Changelog Toggle --- */
+function initChangelog() {
+  const toggle = document.querySelector('.changelog-toggle');
+  const entries = document.querySelector('.changelog-entries');
+  if (!toggle || !entries) return;
+
+  toggle.addEventListener('click', () => {
+    toggle.classList.toggle('open');
+    entries.classList.toggle('open');
+  });
+}
+
 /* --- Smooth Scroll for Anchor Links --- */
 document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
   anchor.addEventListener('click', function (e) {
@@ -284,3 +453,114 @@ document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
     }
   });
 });
+
+/* --- Easter Egg: Logo Click Rainbow Mode --- */
+(function () {
+  const logo = document.querySelector('.nav-logo');
+  if (!logo) return;
+  let clickCount = 0;
+  let clickTimer = null;
+  let rainbowActive = false;
+
+  logo.addEventListener('click', (e) => {
+    clickCount++;
+    clearTimeout(clickTimer);
+
+    clickTimer = setTimeout(() => {
+      clickCount = 0;
+    }, 1500);
+
+    if (clickCount >= 5 && !rainbowActive) {
+      e.preventDefault();
+      clickCount = 0;
+      rainbowActive = true;
+
+      document.body.classList.add('rainbow-mode');
+
+      setTimeout(() => {
+        document.body.classList.remove('rainbow-mode');
+        rainbowActive = false;
+      }, 6000);
+    }
+  });
+})();
+
+/* --- Easter Egg: Matrix Rain on "wake up neo" --- */
+(function () {
+  let buffer = '';
+  let matrixActive = false;
+
+  document.addEventListener('keypress', (e) => {
+    if (matrixActive) return;
+    if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+
+    buffer += e.key.toLowerCase();
+    if (buffer.length > 20) buffer = buffer.slice(-20);
+
+    if (buffer.includes('wake up neo')) {
+      buffer = '';
+      matrixActive = true;
+      startMatrixRain();
+    }
+  });
+
+  function startMatrixRain() {
+    const canvas = document.createElement('canvas');
+    canvas.id = 'matrixCanvas';
+    canvas.style.cssText = 'position:fixed;top:0;left:0;width:100%;height:100%;z-index:9998;pointer-events:none;opacity:0;transition:opacity 0.5s;';
+    document.body.appendChild(canvas);
+
+    const ctx = canvas.getContext('2d');
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    requestAnimationFrame(() => { canvas.style.opacity = '0.85'; });
+
+    const chars = 'ﾊﾐﾋｰｳｼﾅﾓﾆｻﾜﾂｵﾘｱﾎﾃﾏｹﾒｴｶｷﾑﾕﾗｾﾈｽﾀﾇﾍ01234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    const fontSize = 14;
+    const columns = Math.floor(canvas.width / fontSize);
+    const drops = new Array(columns).fill(1);
+
+    // Randomize starting positions
+    for (let i = 0; i < drops.length; i++) {
+      drops[i] = Math.random() * -50;
+    }
+
+    function drawMatrix() {
+      ctx.fillStyle = 'rgba(5, 5, 8, 0.1)';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      ctx.font = fontSize + 'px monospace';
+
+      for (let i = 0; i < drops.length; i++) {
+        const char = chars[Math.floor(Math.random() * chars.length)];
+
+        // Lead character is bright
+        if (Math.random() > 0.3) {
+          ctx.fillStyle = '#00f0ff';
+        } else {
+          ctx.fillStyle = 'rgba(0, 240, 255, 0.4)';
+        }
+
+        ctx.fillText(char, i * fontSize, drops[i] * fontSize);
+
+        if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+          drops[i] = 0;
+        }
+        drops[i]++;
+      }
+    }
+
+    const matrixInterval = setInterval(drawMatrix, 45);
+
+    // Fade out and clean up after 7 seconds
+    setTimeout(() => {
+      canvas.style.opacity = '0';
+      setTimeout(() => {
+        clearInterval(matrixInterval);
+        canvas.remove();
+        matrixActive = false;
+      }, 600);
+    }, 7000);
+  }
+})();

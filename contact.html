@@ -9,6 +9,29 @@
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
 </head>
 <body>
+  <!-- Page Loader -->
+  <div class="page-loader" id="pageLoader">
+    <canvas class="loader-canvas" id="loaderCanvas"></canvas>
+    <div class="loader-content">
+      <div class="loader-logo">SHOW<span class="logo-accent">TOOLS</span></div>
+    </div>
+    <div class="loader-progress">
+      <div class="loader-bar-track">
+        <div class="loader-bar-fill"></div>
+      </div>
+      <span class="loader-percent">0%</span>
+    </div>
+  </div>
+
+  <!-- Page Transition -->
+  <div class="page-transition" id="pageTransition">
+    <div class="transition-panel"></div>
+    <div class="transition-panel"></div>
+    <div class="transition-panel"></div>
+    <div class="transition-panel"></div>
+    <div class="transition-panel"></div>
+  </div>
+
 
   <div class="cursor-dot"></div>
   <div class="cursor-ring"></div>
@@ -62,20 +85,29 @@
             </p>
 
             <!-- Email Link -->
-            <a href="mailto:contact@show-tools.app" class="contact-link">
+            <a href="mailto:showtoolsofficial@gmail.com" class="contact-link">
               <div class="contact-link-icon">✉</div>
               <div class="contact-link-text">
                 <h4>Email</h4>
-                <span>contact@show-tools.app</span>
+                <span>showtoolsofficial@gmail.com</span>
               </div>
             </a>
 
-            <!-- GitHub -->
+            <!-- Instagram -->
             <a href="#" class="contact-link">
-              <div class="contact-link-icon">⟠</div>
+              <div class="contact-link-icon">◐</div>
               <div class="contact-link-text">
-                <h4>GitHub</h4>
-                <span>Report issues & contribute</span>
+                <h4>Instagram</h4>
+                <span>Follow us for updates</span>
+              </div>
+            </a>
+
+            <!-- Discord -->
+            <a href="#" class="contact-link">
+              <div class="contact-link-icon">◈</div>
+              <div class="contact-link-text">
+                <h4>Discord</h4>
+                <span>Join the community</span>
               </div>
             </a>
 
@@ -104,7 +136,7 @@
                 <p><span class="output">✓ Monitoring: all clear</span></p>
                 <p>&nbsp;</p>
                 <p><span class="prompt">$</span> show-tools --contact</p>
-                <p><span class="output">→ contact@show-tools.app</span></p>
+                <p><span class="output">→ showtoolsofficial@gmail.com</span></p>
                 <p><span class="output">→ We'd love to hear from you.</span></p>
                 <p>&nbsp;</p>
                 <p><span class="prompt">$</span> <span class="terminal-typing" data-text="show-tools --next-release">_</span></p>
@@ -154,6 +186,21 @@
               tools started as community suggestions.
             </p>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Email Signup -->
+    <section class="section">
+      <div class="section-inner">
+        <div class="email-signup reveal">
+          <h3>Stay in the Loop</h3>
+          <p>Get notified when we release new tools, updates, and features. No spam — just the good stuff.</p>
+          <div class="email-signup-form">
+            <input type="email" class="email-signup-input" placeholder="your@email.com" disabled>
+            <button class="email-signup-btn" disabled>Notify Me</button>
+          </div>
+          <p class="email-signup-note">Coming soon — email list is being set up</p>
         </div>
       </div>
     </section>

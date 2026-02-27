@@ -9,6 +9,29 @@
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
 </head>
 <body>
+  <!-- Page Loader -->
+  <div class="page-loader" id="pageLoader">
+    <canvas class="loader-canvas" id="loaderCanvas"></canvas>
+    <div class="loader-content">
+      <div class="loader-logo">SHOW<span class="logo-accent">TOOLS</span></div>
+    </div>
+    <div class="loader-progress">
+      <div class="loader-bar-track">
+        <div class="loader-bar-fill"></div>
+      </div>
+      <span class="loader-percent">0%</span>
+    </div>
+  </div>
+
+  <!-- Page Transition -->
+  <div class="page-transition" id="pageTransition">
+    <div class="transition-panel"></div>
+    <div class="transition-panel"></div>
+    <div class="transition-panel"></div>
+    <div class="transition-panel"></div>
+    <div class="transition-panel"></div>
+  </div>
+
 
   <div class="cursor-dot"></div>
   <div class="cursor-ring"></div>
@@ -153,6 +176,23 @@
 
         <!-- Future Downloads Placeholder -->
         <div class="divider"></div>
+
+        <!-- Changelog -->
+        <div class="changelog reveal">
+          <button class="changelog-toggle">
+            <span>Changelog</span>
+            <span class="changelog-toggle-icon">▼</span>
+          </button>
+          <div class="changelog-entries">
+            <div class="changelog-entry">
+              <div class="changelog-entry-header">
+                <span class="changelog-version">v1.2</span>
+                <span class="changelog-date">February 2026</span>
+              </div>
+              <p>Initial public release. Custom widget creator, OSC parameter mapping, real-time color monitoring, Show Mode overlay support.</p>
+            </div>
+          </div>
+        </div>
 
         <div class="reveal" style="text-align: center; padding: var(--space-md) 0;">
           <p style="color: var(--text-dim); font-family: var(--font-mono); font-size: 0.8rem; letter-spacing: 0.05em;">
