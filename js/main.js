@@ -399,11 +399,21 @@ function initPageTransitions() {
   const transition = document.getElementById('pageTransition');
   if (!transition) return;
 
-  // On page load, play the exit (reveal) animation
-  transition.classList.add('exiting');
-  setTimeout(() => {
-    document.body.classList.remove('page-blurring');
-  }, 350);
+  // On new page load: start with overlay fully visible, then fade out
+  // Set opacity immediately to prevent any flash
+  transition.style.opacity = '1';
+  
+  // Small delay to ensure page has rendered behind the overlay, then animate out
+  requestAnimationFrame(() => {
+    requestAnimationFrame(() => {
+      transition.classList.add('exiting');
+      // Remove blur from content after overlay fades
+      setTimeout(() => {
+        document.body.classList.remove('page-blurring');
+        transition.style.opacity = '';
+      }, 500);
+    });
+  });
 
   // Intercept all internal navigation links
   const links = document.querySelectorAll('a[href]');
@@ -430,16 +440,17 @@ function initPageTransitions() {
       // Blur page content behind the transition
       document.body.classList.add('page-blurring');
 
-      // Play entering animation
+      // Reset and play entering animation
       transition.classList.remove('exiting');
+      transition.style.opacity = '';
       
       requestAnimationFrame(() => {
         transition.classList.add('entering');
 
-        // Navigate after dissolve covers the screen
+        // Navigate after dissolve fully covers the screen
         setTimeout(() => {
           window.location.href = destination;
-        }, 450);
+        }, 420);
       });
     });
   });

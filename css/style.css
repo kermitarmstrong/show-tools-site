@@ -1567,20 +1567,24 @@ img, video {
   height: 240px;
 }
 
+/* Entering: fade overlay in over current page */
 .page-transition.entering {
-  animation: dissolveIn 0.45s ease forwards;
+  animation: dissolveIn 0.4s ease forwards;
 }
 
 .page-transition.entering .transition-logo {
-  animation: stLogoIn 0.45s ease forwards;
+  animation: stLogoIn 0.4s ease forwards;
 }
 
+/* Exiting: new page loaded, fade overlay out to reveal it */
 .page-transition.exiting {
-  animation: dissolveOut 0.35s ease forwards;
+  opacity: 1;
+  animation: dissolveOut 0.45s ease 0.05s forwards;
 }
 
 .page-transition.exiting .transition-logo {
-  animation: stLogoOut 0.25s ease forwards;
+  opacity: 0.9;
+  animation: stLogoOut 0.35s ease forwards;
 }
 
 @keyframes dissolveIn {
@@ -1607,8 +1611,8 @@ img, video {
 .page-blurring .page-wrapper,
 .page-blurring .nav,
 .page-blurring .footer {
-  filter: blur(8px);
-  transition: filter 0.3s ease;
+  filter: blur(16px);
+  transition: filter 0.35s ease;
 }
 
 
