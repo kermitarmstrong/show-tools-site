@@ -36,6 +36,44 @@
     </button>
   </nav>
 
+  <!-- Donation Modal -->
+  <div class="modal-overlay" id="donationModal">
+    <div class="modal">
+      <button class="modal-close" id="modalClose">✕</button>
+      <div class="modal-icon">🍺</div>
+      <h2 class="modal-title">Enjoying the tool?</h2>
+      <p class="modal-subtitle">This coding machine runs on Coors Light. Any additional fuel is more than appreciated.</p>
+      
+      <div class="modal-amounts">
+        <button class="amount-btn" data-amount="500">$5</button>
+        <button class="amount-btn" data-amount="1000">$10</button>
+        <button class="amount-btn" data-amount="2000">$20</button>
+        <div class="amount-custom">
+          <span class="amount-custom-prefix">$</span>
+          <input type="number" id="customAmount" class="amount-custom-input" placeholder="Custom" min="2.50" step="0.50">
+        </div>
+      </div>
+
+      <div class="modal-actions">
+        <button class="btn btn-primary modal-btn-beer" id="beerBtn" disabled>
+          <span class="btn-icon">🍺</span> Buy Me A Beer
+        </button>
+        <button class="btn btn-ghost modal-btn-skip" id="skipBtn">
+          No Beer, Just the free download...I guess.
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Thank You Banner (shown after returning from Stripe) -->
+  <div class="thank-you-banner" id="thankYouBanner" style="display: none;">
+    <div class="thank-you-inner">
+      <button class="thank-you-close" id="thankYouClose">✕</button>
+      <span class="thank-you-icon">🍻</span>
+      <p class="thank-you-text">Hey YOU! Yea, YOU! Thanks so much! If you bought me a beer (or multiple), you're a real one. This beer shall be that much more delicious knowing it came from a gracious customer! If you didn't, and just got this awesome, amazing, super useful tool for free, you're still cool. Just not as cool as Coors Light when the mountains are blue. Either way, Thank You for your support and I hope you enjoy! Please give me any feedback at <a href="mailto:showtoolsofficial@gmail.com" style="color: var(--accent);">showtoolsofficial@gmail.com</a> and stay tuned for more products and features!</p>
+    </div>
+  </div>
+
   <div class="page-wrapper">
 
     <!-- Page Header -->
@@ -43,7 +81,6 @@
       <div class="section-inner">
         <div class="section-label" style="justify-content: center;"><span></span>Free Downloads</div>
         <h1>Downloads</h1>
-        <p>All Show Tools software is free. No accounts, no subscriptions — just download and go.</p>
       </div>
     </section>
 
@@ -72,9 +109,9 @@
                   <span>Windows x64 · .exe · Setup Wizard</span>
                 </div>
               </div>
-              <a href="https://github.com/kermitarmstrong/resolume-hud/releases/latest/download/ResolumeHud.exe" class="download-btn">
+              <button class="download-btn donation-trigger" data-file="https://github.com/kermitarmstrong/resolume-hud/releases/latest/download/ResolumeHud.exe">
                 ↓ Download .exe
-              </a>
+              </button>
             </div>
 
             <!-- Readme -->
@@ -151,5 +188,6 @@
   </footer>
 
   <script src="js/main.js"></script>
+  <script src="js/donation.js"></script>
 </body>
 </html>
