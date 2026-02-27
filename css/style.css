@@ -1539,7 +1539,7 @@ img, video {
   min-width: 32px;
 }
 
-/* --- Page Transition (diagonal wipe) --- */
+/* --- Page Transition (blur dissolve) --- */
 .page-transition {
   position: fixed;
   top: 0;
@@ -1548,48 +1548,63 @@ img, video {
   height: 100%;
   z-index: 9999;
   pointer-events: none;
-  overflow: hidden;
-}
-
-.transition-slice {
-  position: absolute;
-  top: -10%;
-  left: -10%;
-  width: 120%;
-  height: 120%;
-  background: var(--bg-secondary);
-  transform: translateX(-110%) skewX(-8deg);
+  background: var(--bg-primary);
+  opacity: 0;
+  backdrop-filter: blur(0px);
+  -webkit-backdrop-filter: blur(0px);
   transition: none;
 }
 
-.transition-slice:nth-child(2) {
-  background: var(--bg-tertiary);
+.page-transition .transition-logo {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.8);
+  opacity: 0;
+  transition: none;
 }
 
-.page-transition.entering .transition-slice:nth-child(1) {
-  animation: sliceIn 0.45s var(--ease-in-out) forwards;
+.page-transition .transition-logo svg {
+  width: 80px;
+  height: 80px;
 }
 
-.page-transition.entering .transition-slice:nth-child(2) {
-  animation: sliceIn 0.45s var(--ease-in-out) 0.06s forwards;
+.page-transition.entering {
+  animation: blurIn 0.5s var(--ease-in-out) forwards;
 }
 
-.page-transition.exiting .transition-slice:nth-child(2) {
-  animation: sliceOut 0.4s var(--ease-in-out) forwards;
+.page-transition.entering .transition-logo {
+  animation: logoFadeIn 0.5s var(--ease-in-out) forwards;
 }
 
-.page-transition.exiting .transition-slice:nth-child(1) {
-  animation: sliceOut 0.4s var(--ease-in-out) 0.06s forwards;
+.page-transition.exiting {
+  animation: blurOut 0.4s var(--ease-in-out) forwards;
 }
 
-@keyframes sliceIn {
-  0%   { transform: translateX(-110%) skewX(-8deg); }
-  100% { transform: translateX(0%) skewX(-8deg); }
+.page-transition.exiting .transition-logo {
+  animation: logoFadeOut 0.3s var(--ease-in-out) forwards;
 }
 
-@keyframes sliceOut {
-  0%   { transform: translateX(0%) skewX(-8deg); }
-  100% { transform: translateX(110%) skewX(-8deg); }
+@keyframes blurIn {
+  0%   { opacity: 0; backdrop-filter: blur(0px); -webkit-backdrop-filter: blur(0px); }
+  40%  { opacity: 0.6; backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }
+  100% { opacity: 1; backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); }
+}
+
+@keyframes blurOut {
+  0%   { opacity: 1; backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); }
+  60%  { opacity: 0.5; backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); }
+  100% { opacity: 0; backdrop-filter: blur(0px); -webkit-backdrop-filter: blur(0px); }
+}
+
+@keyframes logoFadeIn {
+  0%   { opacity: 0; transform: translate(-50%, -50%) scale(0.7); }
+  100% { opacity: 0.15; transform: translate(-50%, -50%) scale(1); }
+}
+
+@keyframes logoFadeOut {
+  0%   { opacity: 0.15; transform: translate(-50%, -50%) scale(1); }
+  100% { opacity: 0; transform: translate(-50%, -50%) scale(1.1); }
 }
 
 /* --- Changelog --- */

@@ -407,7 +407,7 @@ function initPageTransitions() {
   links.forEach((link) => {
     const href = link.getAttribute('href');
 
-    // Skip external links, anchors, mailto, download triggers, and javascript
+    // Skip external links, anchors, mailto, download triggers, logo, and javascript
     if (!href ||
         href.startsWith('#') ||
         href.startsWith('http') ||
@@ -415,6 +415,7 @@ function initPageTransitions() {
         href.startsWith('javascript') ||
         link.hasAttribute('download') ||
         link.classList.contains('donation-trigger') ||
+        link.classList.contains('nav-logo') ||
         link.getAttribute('target') === '_blank') {
       return;
     }
@@ -430,10 +431,10 @@ function initPageTransitions() {
       requestAnimationFrame(() => {
         transition.classList.add('entering');
 
-        // Navigate after slices cover the screen
+        // Navigate after blur covers the screen
         setTimeout(() => {
           window.location.href = destination;
-        }, 450);
+        }, 500);
       });
     });
   });
@@ -471,25 +472,30 @@ document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
   let rainbowActive = false;
 
   logo.addEventListener('click', (e) => {
+    e.preventDefault();
+    e.stopPropagation();
     clickCount++;
     clearTimeout(clickTimer);
 
-    clickTimer = setTimeout(() => {
-      clickCount = 0;
-    }, 1500);
-
     if (clickCount >= 5 && !rainbowActive) {
-      e.preventDefault();
       clickCount = 0;
       rainbowActive = true;
-
       document.body.classList.add('rainbow-mode');
 
       setTimeout(() => {
         document.body.classList.remove('rainbow-mode');
         rainbowActive = false;
       }, 6000);
+      return;
     }
+
+    // If single click after a delay, navigate home
+    clickTimer = setTimeout(() => {
+      if (clickCount < 5) {
+        clickCount = 0;
+        window.location.href = 'index.html';
+      }
+    }, 400);
   });
 })();
 
