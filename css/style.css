@@ -1539,7 +1539,7 @@ img, video {
   min-width: 32px;
 }
 
-/* --- Page Transition (blur dissolve) --- */
+/* --- Page Transition (smooth dissolve) --- */
 .page-transition {
   position: fixed;
   top: 0;
@@ -1550,62 +1550,67 @@ img, video {
   pointer-events: none;
   background: var(--bg-primary);
   opacity: 0;
-  backdrop-filter: blur(0px);
-  -webkit-backdrop-filter: blur(0px);
-  transition: none;
+  will-change: opacity;
 }
 
 .page-transition .transition-logo {
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%) scale(0.8);
+  transform: translate(-50%, -50%) scale(0.85);
   opacity: 0;
-  transition: none;
+  will-change: opacity, transform;
 }
 
-.page-transition .transition-logo svg {
-  width: 80px;
-  height: 80px;
+.page-transition .transition-logo img {
+  width: 240px;
+  height: 240px;
 }
 
 .page-transition.entering {
-  animation: blurIn 0.5s var(--ease-in-out) forwards;
+  animation: dissolveIn 0.45s ease forwards;
 }
 
 .page-transition.entering .transition-logo {
-  animation: logoFadeIn 0.5s var(--ease-in-out) forwards;
+  animation: stLogoIn 0.45s ease forwards;
 }
 
 .page-transition.exiting {
-  animation: blurOut 0.4s var(--ease-in-out) forwards;
+  animation: dissolveOut 0.35s ease forwards;
 }
 
 .page-transition.exiting .transition-logo {
-  animation: logoFadeOut 0.3s var(--ease-in-out) forwards;
+  animation: stLogoOut 0.25s ease forwards;
 }
 
-@keyframes blurIn {
-  0%   { opacity: 0; backdrop-filter: blur(0px); -webkit-backdrop-filter: blur(0px); }
-  40%  { opacity: 0.6; backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }
-  100% { opacity: 1; backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); }
+@keyframes dissolveIn {
+  0%   { opacity: 0; }
+  100% { opacity: 1; }
 }
 
-@keyframes blurOut {
-  0%   { opacity: 1; backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); }
-  60%  { opacity: 0.5; backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); }
-  100% { opacity: 0; backdrop-filter: blur(0px); -webkit-backdrop-filter: blur(0px); }
+@keyframes dissolveOut {
+  0%   { opacity: 1; }
+  100% { opacity: 0; }
 }
 
-@keyframes logoFadeIn {
+@keyframes stLogoIn {
   0%   { opacity: 0; transform: translate(-50%, -50%) scale(0.7); }
-  100% { opacity: 0.15; transform: translate(-50%, -50%) scale(1); }
+  100% { opacity: 0.9; transform: translate(-50%, -50%) scale(1); }
 }
 
-@keyframes logoFadeOut {
-  0%   { opacity: 0.15; transform: translate(-50%, -50%) scale(1); }
-  100% { opacity: 0; transform: translate(-50%, -50%) scale(1.1); }
+@keyframes stLogoOut {
+  0%   { opacity: 0.9; transform: translate(-50%, -50%) scale(1); }
+  100% { opacity: 0; transform: translate(-50%, -50%) scale(1.05); }
 }
+
+/* Blur page content when transitioning */
+.page-blurring .page-wrapper,
+.page-blurring .nav,
+.page-blurring .footer {
+  filter: blur(8px);
+  transition: filter 0.3s ease;
+}
+
 
 /* --- Changelog --- */
 .changelog {

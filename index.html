@@ -12,7 +12,12 @@
   <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
 </head>
 <body>
-  <!-- Page Loader -->
+  <!-- Page Loader (hidden by default, shown via JS on first visit) -->
+  <script>
+    if (sessionStorage.getItem('showtools_loaded')) {
+      document.write('<style>#pageLoader{display:none}</style>');
+    }
+  </script>
   <div class="page-loader" id="pageLoader">
     <canvas class="loader-canvas" id="loaderCanvas"></canvas>
     <div class="loader-content">
@@ -29,10 +34,7 @@
   <!-- Page Transition -->
   <div class="page-transition" id="pageTransition">
     <div class="transition-logo">
-      <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <rect x="2" y="2" width="76" height="76" rx="12" stroke="rgba(0,240,255,0.3)" stroke-width="2"/>
-        <text x="50%" y="54%" text-anchor="middle" dominant-baseline="middle" font-family="'Syne',sans-serif" font-weight="800" font-size="28" fill="rgba(0,240,255,0.4)">ST</text>
-      </svg>
+      <img src="favicon-192.png" alt="" width="240" height="240">
     </div>
   </div>
 

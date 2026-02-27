@@ -401,6 +401,9 @@ function initPageTransitions() {
 
   // On page load, play the exit (reveal) animation
   transition.classList.add('exiting');
+  setTimeout(() => {
+    document.body.classList.remove('page-blurring');
+  }, 350);
 
   // Intercept all internal navigation links
   const links = document.querySelectorAll('a[href]');
@@ -424,17 +427,19 @@ function initPageTransitions() {
       e.preventDefault();
       const destination = href;
 
+      // Blur page content behind the transition
+      document.body.classList.add('page-blurring');
+
       // Play entering animation
       transition.classList.remove('exiting');
       
-      // Small delay to reset animation
       requestAnimationFrame(() => {
         transition.classList.add('entering');
 
-        // Navigate after blur covers the screen
+        // Navigate after dissolve covers the screen
         setTimeout(() => {
           window.location.href = destination;
-        }, 500);
+        }, 450);
       });
     });
   });
