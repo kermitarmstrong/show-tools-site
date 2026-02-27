@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Resolume HUD — Custom overlay widgets for real-time Resolume parameter monitoring via OSC.">
+  <title>Resolume HUD — Show Tools</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="favicon-192.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+</head>
+<body>
+  <!-- Page Loader (hidden by default, shown via JS on first visit) -->
+  <script>
+    if (sessionStorage.getItem('showtools_loaded')) {
+      document.write('<style>#pageLoader{display:none}</style>');
+    }
+  </script>
+  <div class="page-loader" id="pageLoader">
+    <canvas class="loader-canvas" id="loaderCanvas"></canvas>
+    <div class="loader-content">
+      <div class="loader-logo">SHOW<span class="logo-accent">TOOLS</span></div>
+    </div>
+    <div class="loader-progress">
+      <div class="loader-bar-track">
+        <div class="loader-bar-fill"></div>
+      </div>
+      <span class="loader-percent">0%</span>
+    </div>
+  </div>
+
+  <!-- Page Transition -->
+  <div class="page-transition" id="pageTransition">
+    <div class="transition-logo">
+      <img src="st-logo.png" alt="" width="240" height="240">
+    </div>
+  </div>
+
+  <div class="cursor-dot"></div>
+  <div class="cursor-ring"></div>
+  <canvas id="bg-canvas"></canvas>
+  <div class="scan-lines"></div>
+  <div class="grain-overlay"></div>
+
+  <!-- Navigation -->
+  <nav class="nav">
+    <a href="index.html" class="nav-logo">
+      <span class="logo-icon">ST</span>
+      <span>SHOW<span class="logo-accent">TOOLS</span></span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li class="nav-dropdown">
+        <a href="products.html" class="active">Products</a>
+        <ul class="nav-dropdown-menu">
+          <li><a href="resolume-hud.html">Resolume HUD</a></li>
+        </ul>
+      </li>
+      <li><a href="downloads.html">Downloads</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <button class="nav-toggle" aria-label="Toggle navigation">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </nav>
+
+  <div class="page-wrapper">
+
+    <!-- Product Hero -->
+    <section class="section page-header">
+      <div class="section-inner">
+        <div class="section-label" style="justify-content: center;"><span></span>Product Details</div>
+        <h1>Resolume HUD</h1>
+        <p>Custom overlay widgets for real-time Resolume parameter monitoring via OSC.</p>
+        <div style="display: flex; gap: 0.75rem; justify-content: center; margin-top: 1rem; flex-wrap: wrap;">
+          <span class="tag">OSC</span>
+          <span class="tag">Real-Time</span>
+          <span class="tag">Customizable</span>
+          <span class="tag">Windows</span>
+          <span class="tag" style="font-size: 0.6rem;">v1.2</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Detail Content -->
+    <section class="section" style="padding-top: 0;">
+      <div class="section-inner">
+        <div class="detail-content">
+
+          <div class="detail-main">
+
+            <!-- Image Gallery -->
+            <div class="detail-gallery reveal">
+              <div class="detail-gallery-main">
+                <div class="product-preview-placeholder" style="min-height: 260px;">
+                  <div class="icon-lg">◉</div>
+                  <p>RESOLUME HUD</p>
+                  <p style="margin-top: 0.5rem; font-size: 0.65rem;">Screenshots coming soon</p>
+                </div>
+              </div>
+              <div class="detail-gallery-thumbs">
+                <div class="detail-thumb active">
+                  <div class="product-preview-placeholder" style="min-height: 0; padding: 1.25rem;">
+                    <p style="font-size: 0.5rem;">Screenshot 1</p>
+                  </div>
+                </div>
+                <div class="detail-thumb">
+                  <div class="product-preview-placeholder" style="min-height: 0; padding: 1.25rem;">
+                    <p style="font-size: 0.5rem;">Screenshot 2</p>
+                  </div>
+                </div>
+                <div class="detail-thumb">
+                  <div class="product-preview-placeholder" style="min-height: 0; padding: 1.25rem;">
+                    <p style="font-size: 0.5rem;">Screenshot 3</p>
+                  </div>
+                </div>
+                <div class="detail-thumb">
+                  <div class="product-preview-placeholder" style="min-height: 0; padding: 1.25rem;">
+                    <p style="font-size: 0.5rem;">Screenshot 4</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="detail-section reveal">
+              <h2>Overview</h2>
+              <p>
+                Resolume HUD is a heads-up display builder designed for live visual artists and operators. 
+                It connects to Resolume Arena or Avenue via OSC, allowing you to create fully custom overlay 
+                widgets that monitor parameters in real time — without ever leaving your show.
+              </p>
+              <p>
+                Whether you need to keep an eye on colorize values, effect intensities, BPM, or any mapped 
+                parameter, HUD gives you a persistent, always-visible readout that sits on top of your 
+                workspace. Think of it as your flight instruments for live visuals.
+              </p>
+            </div>
+
+            <div class="detail-section reveal">
+              <h2>Key Features</h2>
+              <div class="detail-features-grid">
+                <div class="detail-feature">
+                  <div class="detail-feature-icon">◉</div>
+                  <div>
+                    <h4>Custom Widget Builder</h4>
+                    <p>Design your own widgets from scratch. Choose what to monitor, how it looks, and where it lives on your screen.</p>
+                  </div>
+                </div>
+                <div class="detail-feature">
+                  <div class="detail-feature-icon">⟐</div>
+                  <div>
+                    <h4>Real-Time OSC Monitoring</h4>
+                    <p>Live parameter values stream directly from Resolume via OSC. No polling, no delays — true real-time feedback.</p>
+                  </div>
+                </div>
+                <div class="detail-feature">
+                  <div class="detail-feature-icon">◈</div>
+                  <div>
+                    <h4>Show Mode Compatible</h4>
+                    <p>Widgets stay visible even in Resolume's Show Mode. Monitor your show without switching windows or losing focus.</p>
+                  </div>
+                </div>
+                <div class="detail-feature">
+                  <div class="detail-feature-icon">⬡</div>
+                  <div>
+                    <h4>Color Monitoring</h4>
+                    <p>Visual color swatches that update in real time as you adjust colorize effects. See your actual output colors at a glance.</p>
+                  </div>
+                </div>
+                <div class="detail-feature">
+                  <div class="detail-feature-icon">◇</div>
+                  <div>
+                    <h4>Lightweight & Fast</h4>
+                    <p>Minimal system footprint. Runs alongside Resolume without impacting performance during your show.</p>
+                  </div>
+                </div>
+                <div class="detail-feature">
+                  <div class="detail-feature-icon">⊞</div>
+                  <div>
+                    <h4>Drag & Position</h4>
+                    <p>Place widgets anywhere on your screen. Resize, reposition, and lock them in place for your ideal layout.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="detail-section reveal">
+              <h2>How It Works</h2>
+              <p>
+                Resolume HUD communicates with Resolume through OSC (Open Sound Control) over localhost. 
+                Once you enable OSC output in Resolume's preferences, HUD listens for parameter changes 
+                and updates your widgets in real time. No network setup, no configuration files — 
+                just enable OSC and start building widgets.
+              </p>
+              <div class="detail-steps">
+                <div class="detail-step">
+                  <div class="detail-step-num">01</div>
+                  <div>
+                    <h4>Enable OSC in Resolume</h4>
+                    <p>Open Preferences → OSC and enable OSC output on localhost.</p>
+                  </div>
+                </div>
+                <div class="detail-step">
+                  <div class="detail-step-num">02</div>
+                  <div>
+                    <h4>Launch Resolume HUD</h4>
+                    <p>Run the application. It automatically connects to Resolume's OSC output.</p>
+                  </div>
+                </div>
+                <div class="detail-step">
+                  <div class="detail-step-num">03</div>
+                  <div>
+                    <h4>Build Your Widgets</h4>
+                    <p>Create widgets, map them to parameters, position them on screen, and lock them down.</p>
+                  </div>
+                </div>
+                <div class="detail-step">
+                  <div class="detail-step-num">04</div>
+                  <div>
+                    <h4>Run Your Show</h4>
+                    <p>Your widgets update in real time as you perform. Always visible, never in the way.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Sidebar -->
+          <div class="detail-sidebar reveal">
+            <div class="detail-sidebar-card">
+              <h3>Download</h3>
+              <a href="downloads.html#resolume-hud" class="btn btn-primary" style="width: 100%; justify-content: center; margin-bottom: 1rem;">
+                <span class="btn-icon">↓</span> Download Now
+              </a>
+              <div class="detail-sidebar-meta">
+                <div class="detail-meta-row">
+                  <span class="detail-meta-label">Version</span>
+                  <span class="detail-meta-value">v1.2</span>
+                </div>
+                <div class="detail-meta-row">
+                  <span class="detail-meta-label">Platform</span>
+                  <span class="detail-meta-value">Windows 10/11 (64-bit)</span>
+                </div>
+                <div class="detail-meta-row">
+                  <span class="detail-meta-label">Requires</span>
+                  <span class="detail-meta-value">Resolume Arena or Avenue</span>
+                </div>
+                <div class="detail-meta-row">
+                  <span class="detail-meta-label">Protocol</span>
+                  <span class="detail-meta-value">OSC over localhost</span>
+                </div>
+                <div class="detail-meta-row">
+                  <span class="detail-meta-label">Price</span>
+                  <span class="detail-meta-value" style="color: var(--accent);">Pay what you want</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-left">
+        © 2026 Show Tools. All rights reserved.
+      </div>
+      <ul class="footer-links">
+        <li><a href="products.html">Products</a></li>
+        <li><a href="downloads.html">Downloads</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
