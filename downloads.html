@@ -12,7 +12,6 @@
   <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
 </head>
 <body>
-  <!-- Page Loader (hidden by default, shown via JS on first visit) -->
   <script>
     if (sessionStorage.getItem('showtools_loaded')) {
       document.write('<style>#pageLoader{display:none}</style>');
@@ -31,13 +30,11 @@
     </div>
   </div>
 
-  <!-- Page Transition -->
   <div class="page-transition" id="pageTransition">
     <div class="transition-logo">
       <img src="st-logo.png" alt="" width="240" height="240">
     </div>
   </div>
-
 
   <div class="cursor-dot"></div>
   <div class="cursor-ring"></div>
@@ -45,7 +42,6 @@
   <div class="scan-lines"></div>
   <div class="grain-overlay"></div>
 
-  <!-- Navigation -->
   <nav class="nav">
     <a href="index.html" class="nav-logo">
       <span class="logo-icon">ST</span>
@@ -69,28 +65,6 @@
     </button>
   </nav>
 
-  <!-- Donation Modal -->
-  <div class="modal-overlay" id="donationModal">
-    <div class="modal">
-      <button class="modal-close" id="modalClose">✕</button>
-      <div class="modal-icon">🍺</div>
-      <h2 class="modal-title">Help Fuel The Machine?</h2>
-      
-      <div class="modal-actions">
-        <button class="btn btn-primary modal-btn-beer modal-btn-beer-lg" id="beerBtn" onclick="window.location.href='https://donate.stripe.com/dRm7sD9wfdgF6CV99V8g002'">
-          <span class="btn-icon">🍺</span> Buy Me A Beer
-        </button>
-        <button class="btn btn-ghost modal-btn-skip" id="skipBtn" onclick="document.getElementById('donationModal').classList.remove('open');document.body.style.overflow='';var a=document.createElement('a');a.href='https://github.com/kermitarmstrong/resolume-hud/releases/latest/download/ResolumeHud.exe';a.download='';document.body.appendChild(a);a.click();document.body.removeChild(a);">
-          No Beer, Just the free download...I guess.
-        </button>
-      </div>
-
-      <div class="modal-stripe-notice">
-        <span>🔒</span> Secure payment powered by Stripe. You'll be redirected to Stripe to complete your payment, then brought back here for your download.
-      </div>
-    </div>
-  </div>
-
   <!-- Thank You Banner (shown after returning from Stripe) -->
   <div class="thank-you-banner" id="thankYouBanner" style="display: none;">
     <div class="thank-you-inner">
@@ -102,7 +76,6 @@
 
   <div class="page-wrapper">
 
-    <!-- Page Header -->
     <section class="section page-header">
       <div class="section-inner">
         <div class="section-label" style="justify-content: center;"><span></span>Downloads</div>
@@ -110,7 +83,6 @@
       </div>
     </section>
 
-    <!-- Downloads -->
     <section class="section" style="padding-top: 0;" id="resolume-hud">
       <div class="section-inner">
 
@@ -119,6 +91,7 @@
           <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 0.5rem; flex-wrap: wrap;">
             <h2>Resolume HUD — Widget Creator</h2>
             <span class="tag" style="font-size: 0.6rem;">v1.3</span>
+            <span class="tag tag-free" style="font-size: 0.6rem;">FREE</span>
           </div>
           <p>
             Custom overlay widgets for real-time Resolume parameter monitoring via OSC. 
@@ -126,8 +99,8 @@
           </p>
 
           <div class="download-items">
-            <!-- Installer -->
-            <div class="download-item">
+            <!-- Installer — DIRECT DOWNLOAD, no modal -->
+            <div class="download-item download-item-primary">
               <div class="download-item-info">
                 <div class="download-item-icon">⬇</div>
                 <div class="download-item-text">
@@ -135,9 +108,9 @@
                   <span>Windows x64 · .exe · Setup Wizard</span>
                 </div>
               </div>
-              <button class="download-btn donation-trigger" data-file="https://github.com/kermitarmstrong/resolume-hud/releases/latest/download/ResolumeHud.exe">
-                ↓ Download .exe
-              </button>
+              <a href="https://github.com/kermitarmstrong/resolume-hud/releases/latest/download/ResolumeHud.exe" class="download-btn download-btn-primary">
+                ↓ Free Download
+              </a>
             </div>
 
             <!-- Readme -->
@@ -184,7 +157,22 @@
           </p>
         </div>
 
-        <!-- Future Downloads Placeholder -->
+        <div class="divider"></div>
+
+        <!-- Buy Me A Beer — Friendly, non-blocking -->
+        <div class="support-card reveal">
+          <div class="support-card-inner">
+            <div class="support-card-icon">🍺</div>
+            <div class="support-card-content">
+              <h3>Enjoying the tool? Help fuel future development.</h3>
+              <p>Show Tools is free and always will be. If you'd like to support ongoing development and new features, you can buy me a beer. Totally optional — no pressure at all.</p>
+            </div>
+            <a href="https://donate.stripe.com/dRm7sD9wfdgF6CV59V8g002" target="_blank" class="btn btn-beer">
+              <span class="btn-icon">🍺</span> Buy Me A Beer
+            </a>
+          </div>
+        </div>
+
         <div class="divider"></div>
 
         <!-- Changelog -->
@@ -211,6 +199,42 @@
           </div>
         </div>
 
+        <div class="divider"></div>
+
+        <!-- Review Section -->
+        <div class="review-section reveal">
+          <div class="review-form-card">
+            <h3>Like the product? Leave a review!</h3>
+            <p style="color: var(--text-dim); margin-bottom: 1.25rem;">Your feedback helps a lot and helps other VJs discover the tool.</p>
+            
+            <div class="star-rating" id="starRating">
+              <span class="star" data-value="1">★</span>
+              <span class="star" data-value="2">★</span>
+              <span class="star" data-value="3">★</span>
+              <span class="star" data-value="4">★</span>
+              <span class="star" data-value="5">★</span>
+            </div>
+            <input type="text" class="review-input" id="reviewName" placeholder="Your name (optional)">
+            <textarea class="review-textarea" id="reviewText" placeholder="What do you think of Resolume HUD?" rows="4"></textarea>
+            <button class="btn btn-primary" id="submitReview" style="width: 100%;">Submit Review</button>
+            <p class="review-note" id="reviewNote" style="display:none;"></p>
+          </div>
+
+          <!-- Featured Reviews — manually populated -->
+          <div class="featured-reviews" id="featuredReviews">
+            <h3 style="margin-bottom: 1rem;">What Users Are Saying</h3>
+            <p style="color: var(--text-dim); font-family: var(--font-mono); font-size: 0.75rem;">Reviews coming soon — be the first!</p>
+            <!--
+            TEMPLATE: Copy this block for each approved review:
+            <div class="review-card">
+              <div class="review-card-stars">★★★★★</div>
+              <p class="review-card-text">"Review text here"</p>
+              <span class="review-card-author">— Name</span>
+            </div>
+            -->
+          </div>
+        </div>
+
         <div class="reveal" style="text-align: center; padding: var(--space-md) 0;">
           <p style="color: var(--text-dim); font-family: var(--font-mono); font-size: 0.8rem; letter-spacing: 0.05em;">
             More tools coming soon — check back or <a href="contact.html" style="color: var(--accent);">get in touch</a> to stay updated.
@@ -222,12 +246,9 @@
 
   </div>
 
-  <!-- Footer -->
   <footer class="footer">
     <div class="footer-inner">
-      <div class="footer-left">
-        © 2026 Show Tools. All rights reserved.
-      </div>
+      <div class="footer-left">© 2026 Show Tools. All rights reserved.</div>
       <ul class="footer-links">
         <li><a href="products.html">Products</a></li>
         <li><a href="downloads.html">Downloads</a></li>

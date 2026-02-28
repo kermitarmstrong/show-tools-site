@@ -1,72 +1,10 @@
 /* ============================================
-   SHOW TOOLS — Donation Modal Logic
+   SHOW TOOLS — Downloads Page Logic
    ============================================ */
 
-/* Stripe Payment Link */
-const STRIPE_LINK = 'https://donate.stripe.com/dRm7sD9wfdgF6CV99V8g002';
-
-/* Direct download URL */
 const DOWNLOAD_URL = 'https://github.com/kermitarmstrong/resolume-hud/releases/latest/download/ResolumeHud.exe';
 
 document.addEventListener('DOMContentLoaded', () => {
-  const modal = document.getElementById('donationModal');
-  const modalClose = document.getElementById('modalClose');
-  const beerBtn = document.getElementById('beerBtn');
-  const skipBtn = document.getElementById('skipBtn');
-  const triggers = document.querySelectorAll('.donation-trigger');
-
-  if (!modal) return;
-
-  /* --- Open Modal on Download Click --- */
-  triggers.forEach((btn) => {
-    btn.addEventListener('click', (e) => {
-      e.preventDefault();
-      openModal();
-    });
-  });
-
-  /* --- Close Modal --- */
-  modalClose.addEventListener('click', closeModal);
-
-  modal.addEventListener('click', (e) => {
-    if (e.target === modal) closeModal();
-  });
-
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') closeModal();
-  });
-
-  /* --- Beer Button → Stripe --- */
-  beerBtn.addEventListener('click', () => {
-    window.location.href = STRIPE_LINK;
-  });
-
-  /* --- Skip → Free Download --- */
-  skipBtn.addEventListener('click', () => {
-    closeModal();
-    triggerDownload();
-  });
-
-  /* --- Modal Open/Close --- */
-  function openModal() {
-    modal.classList.add('open');
-    document.body.style.overflow = 'hidden';
-  }
-
-  function closeModal() {
-    modal.classList.remove('open');
-    document.body.style.overflow = '';
-  }
-
-  /* --- Trigger File Download --- */
-  function triggerDownload() {
-    const link = document.createElement('a');
-    link.href = DOWNLOAD_URL;
-    link.download = '';
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-  }
 
   /* --- Check for Return from Stripe --- */
   const params = new URLSearchParams(window.location.search);
@@ -75,9 +13,6 @@ document.addEventListener('DOMContentLoaded', () => {
     if (banner) {
       banner.style.display = 'flex';
     }
-
-    setTimeout(triggerDownload, 1000);
-
     const cleanUrl = window.location.pathname;
     window.history.replaceState({}, document.title, cleanUrl);
   }
@@ -87,6 +22,79 @@ document.addEventListener('DOMContentLoaded', () => {
   if (thankYouClose) {
     thankYouClose.addEventListener('click', () => {
       document.getElementById('thankYouBanner').style.display = 'none';
+    });
+  }
+
+  /* --- Star Rating --- */
+  const starRating = document.getElementById('starRating');
+  let selectedRating = 0;
+
+  if (starRating) {
+    const stars = starRating.querySelectorAll('.star');
+
+    stars.forEach(star => {
+      star.addEventListener('mouseenter', () => {
+        const val = parseInt(star.getAttribute('data-value'));
+        stars.forEach(s => {
+          s.classList.toggle('star-hover', parseInt(s.getAttribute('data-value')) <= val);
+        });
+      });
+
+      star.addEventListener('mouseleave', () => {
+        stars.forEach(s => s.classList.remove('star-hover'));
+      });
+
+      star.addEventListener('click', () => {
+        selectedRating = parseInt(star.getAttribute('data-value'));
+        stars.forEach(s => {
+          s.classList.toggle('star-active', parseInt(s.getAttribute('data-value')) <= selectedRating);
+        });
+      });
+    });
+  }
+
+  /* --- Submit Review via Email --- */
+  const submitBtn = document.getElementById('submitReview');
+  if (submitBtn) {
+    submitBtn.addEventListener('click', () => {
+      const name = document.getElementById('reviewName').value.trim() || 'Anonymous';
+      const text = document.getElementById('reviewText').value.trim();
+      const note = document.getElementById('reviewNote');
+
+      if (selectedRating === 0) {
+        note.style.display = 'block';
+        note.style.color = '#ff6b6b';
+        note.textContent = 'Please select a star rating.';
+        return;
+      }
+
+      if (!text) {
+        note.style.display = 'block';
+        note.style.color = '#ff6b6b';
+        note.textContent = 'Please write a short review.';
+        return;
+      }
+
+      const stars = '★'.repeat(selectedRating) + '☆'.repeat(5 - selectedRating);
+      const subject = encodeURIComponent('Resolume HUD Review — ' + stars);
+      const body = encodeURIComponent(
+        'Rating: ' + stars + ' (' + selectedRating + '/5)\n' +
+        'Name: ' + name + '\n\n' +
+        'Review:\n' + text + '\n\n' +
+        '---\nSent from show-tools.app'
+      );
+
+      window.location.href = 'mailto:showtoolsofficial@gmail.com?subject=' + subject + '&body=' + body;
+
+      note.style.display = 'block';
+      note.style.color = 'var(--accent)';
+      note.textContent = 'Thanks! Your default email app should open — just hit send.';
+
+      // Reset form
+      document.getElementById('reviewName').value = '';
+      document.getElementById('reviewText').value = '';
+      selectedRating = 0;
+      document.querySelectorAll('.star').forEach(s => s.classList.remove('star-active'));
     });
   }
 });
