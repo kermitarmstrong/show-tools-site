@@ -94,27 +94,32 @@
 
           <div class="detail-main">
 
-            <!-- Tutorial Video -->
-            <div class="detail-video reveal">
-              <div class="detail-video-wrapper">
-                <iframe src="https://www.youtube.com/embed/qduGUrsTPW4" title="Resolume HUD Tutorial" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+            <!-- Gallery with clickable thumbnails -->
+            <div class="detail-gallery reveal" id="detailGallery">
+              <div class="detail-gallery-main">
+                <img src="assets/screenshot-both.jpg" alt="Resolume HUD" id="galleryMainImg" loading="lazy">
+                <div class="gallery-video-container" id="galleryVideoContainer" style="display:none;">
+                  <iframe src="" id="galleryVideoFrame" title="Resolume HUD Tutorial" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+                </div>
               </div>
-            </div>
-
-            <!-- Screenshots -->
-            <div class="detail-gallery reveal">
-              <div class="detail-gallery-thumbs detail-gallery-thumbs-4">
-                <div class="detail-thumb-lg">
-                  <img src="assets/screenshot-main.jpg" alt="Resolume HUD Main Window" loading="lazy" onerror="this.parentElement.innerHTML='<div class=\'product-preview-placeholder\' style=\'min-height:0;padding:2rem;\'><p style=\'font-size:0.6rem;\'>Main Window</p></div>'">
+              <div class="detail-gallery-thumbs detail-gallery-thumbs-5">
+                <div class="detail-thumb-lg active" data-type="image" data-src="assets/screenshot-both.jpg" onclick="switchGallery(this)">
+                  <img src="assets/screenshot-both.jpg" alt="Full View" loading="lazy">
                 </div>
-                <div class="detail-thumb-lg">
-                  <img src="assets/screenshot-widgets.jpg" alt="Resolume HUD Widgets" loading="lazy" onerror="this.parentElement.innerHTML='<div class=\'product-preview-placeholder\' style=\'min-height:0;padding:2rem;\'><p style=\'font-size:0.6rem;\'>Widgets</p></div>'">
+                <div class="detail-thumb-lg" data-type="image" data-src="assets/screenshot-main.jpg" onclick="switchGallery(this)">
+                  <img src="assets/screenshot-main.jpg" alt="Main Window" loading="lazy">
                 </div>
-                <div class="detail-thumb-lg">
-                  <img src="assets/screenshot-both.jpg" alt="Resolume HUD Full View" loading="lazy" onerror="this.parentElement.innerHTML='<div class=\'product-preview-placeholder\' style=\'min-height:0;padding:2rem;\'><p style=\'font-size:0.6rem;\'>Full View</p></div>'">
+                <div class="detail-thumb-lg" data-type="image" data-src="assets/screenshot-widgets.jpg" onclick="switchGallery(this)">
+                  <img src="assets/screenshot-widgets.jpg" alt="Widgets" loading="lazy">
                 </div>
-                <div class="detail-thumb-lg">
-                  <img src="assets/screenshot-create.jpg" alt="Resolume HUD Create Options" loading="lazy" onerror="this.parentElement.innerHTML='<div class=\'product-preview-placeholder\' style=\'min-height:0;padding:2rem;\'><p style=\'font-size:0.6rem;\'>Create Options</p></div>'">
+                <div class="detail-thumb-lg" data-type="image" data-src="assets/screenshot-create.jpg" onclick="switchGallery(this)">
+                  <img src="assets/screenshot-create.jpg" alt="Create Options" loading="lazy">
+                </div>
+                <div class="detail-thumb-lg" data-type="video" data-src="https://www.youtube.com/embed/qduGUrsTPW4" onclick="switchGallery(this)">
+                  <div class="thumb-video-overlay">
+                    <span class="thumb-play-icon">▶</span>
+                  </div>
+                  <img src="https://img.youtube.com/vi/qduGUrsTPW4/mqdefault.jpg" alt="Tutorial Video" loading="lazy">
                 </div>
               </div>
             </div>
