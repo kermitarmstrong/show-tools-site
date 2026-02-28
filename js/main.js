@@ -37,7 +37,7 @@ function initPageLoader() {
 
   // Loader particles
   const particles = [];
-  const particleCount = 80;
+  const particleCount = 50;
 
   for (let i = 0; i < particleCount; i++) {
     const cx = canvas.width / 2;
@@ -146,7 +146,9 @@ function initCanvas() {
   const cellSize = 60;
   let mouseX = -1000;
   let mouseY = -1000;
-  let animationId;
+  let lastFrame = 0;
+  const targetFPS = 30;
+  const frameInterval = 1000 / targetFPS;
 
   function resize() {
     width = canvas.width = window.innerWidth;
@@ -163,9 +165,9 @@ function initCanvas() {
     mouseY = e.clientY;
   });
 
-  // Particles
+  // Particles — reduced count for performance
   const particles = [];
-  const particleCount = 50;
+  const particleCount = 30;
 
   for (let i = 0; i < particleCount; i++) {
     particles.push({
@@ -178,7 +180,14 @@ function initCanvas() {
     });
   }
 
-  function draw() {
+  function draw(timestamp) {
+    // Throttle to target FPS
+    if (timestamp - lastFrame < frameInterval) {
+      requestAnimationFrame(draw);
+      return;
+    }
+    lastFrame = timestamp;
+
     ctx.clearRect(0, 0, width, height);
 
     // Draw grid
@@ -261,10 +270,10 @@ function initCanvas() {
       }
     }
 
-    animationId = requestAnimationFrame(draw);
+    requestAnimationFrame(draw);
   }
 
-  draw();
+  requestAnimationFrame(draw);
 }
 
 /* --- Custom Cursor --- */

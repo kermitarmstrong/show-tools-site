@@ -6,6 +6,14 @@
 /* --- Google Fonts Import --- */
 @import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Outfit:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap');
 
+/* --- Performance: GPU acceleration for animated elements --- */
+.page-transition,
+.page-loader,
+.modal-overlay {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
 /* --- CSS Custom Properties --- */
 :root {
   /* Colors */
@@ -357,10 +365,41 @@ img, video {
   text-align: center;
   padding-top: var(--nav-height);
   position: relative;
+  overflow: hidden;
+}
+
+.hero-video-bg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 120%;
+  height: 120%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.hero-video-bg iframe {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border: none;
+}
+
+.hero-video-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(ellipse at center, rgba(5,5,8,0.55) 0%, rgba(5,5,8,0.85) 70%, rgba(5,5,8,0.95) 100%);
+  z-index: 1;
 }
 
 .hero-content {
   max-width: 900px;
+  position: relative;
+  z-index: 2;
 }
 
 .hero-tag {
@@ -1213,6 +1252,76 @@ img, video {
 .nav-dropdown-menu a:hover {
   color: var(--accent);
   background: rgba(0, 240, 255, 0.05);
+}
+
+/* --- Performance --- */
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.page-wrapper,
+.nav,
+.footer {
+  will-change: filter;
+}
+
+/* --- Product Detail Video --- */
+.detail-video {
+  margin-bottom: 1.5rem;
+}
+
+.detail-video-wrapper {
+  position: relative;
+  padding-bottom: 56.25%;
+  height: 0;
+  overflow: hidden;
+  border-radius: 12px;
+  border: 1px solid var(--border-subtle);
+  background: var(--bg-secondary);
+}
+
+.detail-video-wrapper iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 12px;
+}
+
+/* --- Screenshot Thumbs --- */
+.detail-gallery-thumbs-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.75rem;
+}
+
+.detail-gallery-thumbs-4 {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.75rem;
+}
+
+.detail-thumb-lg {
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid var(--border-subtle);
+  cursor: pointer;
+  transition: border-color 0.2s;
+  aspect-ratio: 16/10;
+  background: var(--bg-secondary);
+}
+
+.detail-thumb-lg:hover {
+  border-color: var(--accent);
+}
+
+.detail-thumb-lg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
 }
 
 /* --- Product Detail Page --- */
@@ -2244,6 +2353,16 @@ img, video {
 
   .detail-gallery-thumbs {
     grid-template-columns: repeat(4, 1fr);
+    gap: 0.5rem;
+  }
+
+  .detail-gallery-thumbs-3 {
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+  }
+
+  .detail-gallery-thumbs-4 {
+    grid-template-columns: repeat(2, 1fr);
     gap: 0.5rem;
   }
 
