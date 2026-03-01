@@ -2421,6 +2421,26 @@ img, video {
   background: rgba(255, 255, 255, 0.05);
 }
 
+/* --- Update Announcement Banner --- */
+.update-banner {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.85rem 1.25rem;
+  margin-bottom: 1.5rem;
+  border: 1px solid var(--accent);
+  border-radius: 10px;
+  background: rgba(0, 240, 255, 0.05);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  letter-spacing: 0.02em;
+}
+
+.update-banner strong {
+  color: var(--accent);
+}
+
 /* --- FREE Tag --- */
 .tag-free {
   background: rgba(0, 240, 255, 0.15);
