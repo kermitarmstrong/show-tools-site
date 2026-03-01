@@ -2427,6 +2427,12 @@ img, video {
   border: 1px solid var(--accent);
 }
 
+.tag-downloads {
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--text-secondary);
+  border: 1px solid var(--border-subtle);
+}
+
 /* --- Primary Download Item Highlight --- */
 .download-item-primary {
   border-color: var(--border-glow);

@@ -14,6 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initPageTransitions();
   initChangelog();
   initSlideshow();
+  fetchDownloadCount();
 });
 
 /* --- Page Loader with Particles (first visit only) --- */
@@ -548,6 +549,42 @@ function initSlideshow() {
       goToSlide((current + 1) % slides.length);
     }, interval);
   });
+}
+
+/* --- GitHub Download Counter --- */
+function fetchDownloadCount() {
+  const targets = [
+    document.getElementById('homeDownloadCount'),
+    document.getElementById('dlPageCount'),
+    document.getElementById('detailDownloadCount')
+  ].filter(Boolean);
+
+  if (targets.length === 0) return;
+
+  fetch('https://api.github.com/repos/kermitarmstrong/resolume-hud/releases')
+    .then(res => res.json())
+    .then(releases => {
+      let total = 0;
+      releases.forEach(release => {
+        if (release.assets) {
+          release.assets.forEach(asset => {
+            total += asset.download_count || 0;
+          });
+        }
+      });
+
+      const display = total.toLocaleString();
+      targets.forEach(el => {
+        if (el.id === 'dlPageCount') {
+          el.textContent = '⬇ ' + display + ' Downloads';
+        } else {
+          el.textContent = display;
+        }
+      });
+    })
+    .catch(() => {
+      // Silently fail — counters just stay as "—"
+    });
 }
 
 /* --- Easter Egg: Logo Click Rainbow Mode --- */
