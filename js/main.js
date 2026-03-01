@@ -576,9 +576,9 @@ function fetchDownloadCount() {
       const display = total.toLocaleString();
       targets.forEach(el => {
         if (el.id === 'dlPageCount') {
-          el.textContent = '⬇ ' + display + ' Downloads';
+          el.textContent = 'Downloaded ' + display + '×';
         } else {
-          el.textContent = display;
+          el.textContent = display + '+';
         }
       });
     })
