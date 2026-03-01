@@ -1237,14 +1237,15 @@ img, video {
   transform: translateX(-50%);
   background: var(--bg-secondary);
   border: 1px solid var(--border-glow);
-  border-radius: 8px;
-  padding: 0.35rem 0;
-  min-width: 140px;
+  border-radius: 6px;
+  padding: 0.25rem 0;
+  min-width: 0;
+  width: max-content;
   opacity: 0;
   visibility: hidden;
   transform: translateX(-50%) translateY(8px);
   transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
   z-index: 100;
   list-style: none;
 }
@@ -1261,7 +1262,7 @@ img, video {
 
 .nav-dropdown-menu a {
   display: block;
-  padding: 0.4rem 0.9rem;
+  padding: 0.3rem 0.65rem;
   font-size: 0.7rem;
   color: var(--text-secondary);
   transition: color 0.2s, background 0.2s;
