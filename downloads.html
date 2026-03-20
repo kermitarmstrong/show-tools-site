@@ -70,7 +70,7 @@
     <div class="thank-you-inner">
       <button class="thank-you-close" id="thankYouClose">✕</button>
       <span class="thank-you-icon">🍻</span>
-      <p class="thank-you-text">Hey YOU! Yea, YOU! Thanks so much! If you bought me a beer (or multiple), you're a real one. This beer shall be that much more delicious knowing it came from a gracious customer! If you didn't, and just got this awesome, amazing, super useful tool for free, you're still cool. Just not as cool as Coors Light when the mountains are blue. Either way, Thank You for your support and I hope you enjoy! Please give me any feedback at <a href="mailto:showtoolsofficial@gmail.com" style="color: var(--accent);">showtoolsofficial@gmail.com</a> and stay tuned for more products and features!</p>
+      <p class="thank-you-text">Hey YOU! Yea, YOU! Thanks so much! If you bought me a beer (or multiple), you're a real one. This beer shall be that much more delicious knowing it came from a gracious customer! If you didn't, and just got this awesome, amazing, super useful tool for free, you're still cool. Just not as cool as Coors Light when the mountains are blue. Either way, Thank You for your support and I hope you enjoy! Please give me any feedback on our <a href="contact.html" style="color: var(--accent);">contact page</a> and stay tuned for more products and features!</p>
     </div>
   </div>
 
@@ -89,13 +89,13 @@
         <!-- Resolume HUD Downloads -->
         <div class="update-banner reveal">
           <span class="pulse-dot"></span>
-          <strong>v1.4 Now Available!</strong> — Resolume Web Server / REST API support, new widgets, and built-in auto-updater.
+          <strong>v1.5 Now Available!</strong> — Rebuilt API connection, auto-reconnect, new Boolean Indicator, and now code signed — no more SmartScreen warnings.
         </div>
 
         <div class="download-section reveal">
           <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 0.5rem; flex-wrap: wrap;">
             <h2>Resolume HUD — Widget Creator</h2>
-            <span class="tag" style="font-size: 0.6rem;">v1.4</span>
+            <span class="tag" style="font-size: 0.6rem;">v1.5</span>
             <span class="tag tag-free" style="font-size: 0.6rem;">FREE</span>
             <span class="tag tag-downloads" style="font-size: 0.6rem;" id="dlPageCount">⬇ —</span>
           </div>
@@ -188,6 +188,16 @@
           <div class="changelog-entries">
             <div class="changelog-entry">
               <div class="changelog-entry-header">
+                <span class="changelog-version">v1.5</span>
+                <span class="changelog-date">March 2026</span>
+              </div>
+              <p><b>IMPORTANT:</b> If you used API widgets (not OSC) in v1.4, you'll need to re-create them once in the wizard. After that, they will automatically reconnect whenever Resolume restarts. This is a one-time step. OSC widgets are not affected.</p>
+              <p><b>API Connection Overhaul:</b> Completely rebuilt API connection — parameter IDs now resolve fresh on every connection. Widgets automatically reconnect when Resolume restarts. Widgets show current values on connect. Works reliably regardless of start order. New Refresh API button in the status bar for manual reconnect.</p>
+              <p><b>New &amp; Improved:</b> Speed widget shows correct percentage via API. Clip transport parameters now visible in API browser. Boolean Indicator redesigned with large green/red status circle and ON/OFF overlay. Code signed with Microsoft Trusted Signing — no more SmartScreen warnings.</p>
+              <p><b>Under the Hood:</b> Full security and code audit. Widget system refactored with shared base class. Update and What's New dialogs rebuilt. Config system hardened. Improved resource cleanup and thread safety.</p>
+            </div>
+            <div class="changelog-entry">
+              <div class="changelog-entry-header">
                 <span class="changelog-version">v1.4</span>
                 <span class="changelog-date">February 2026</span>
               </div>
@@ -264,12 +274,4 @@
         <li><a href="products.html">Products</a></li>
         <li><a href="downloads.html">Downloads</a></li>
         <li><a href="about.html">About</a></li>
-        <li><a href="contact.html">Contact</a></li>
-      </ul>
-    </div>
-  </footer>
-
-  <script src="js/main.js"></script>
-  <script src="js/donation.js"></script>
-</body>
-</html>
+        <li><a href="contact.ht

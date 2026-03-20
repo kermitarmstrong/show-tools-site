@@ -53,10 +53,13 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  /* --- Submit Review via Email --- */
+  /* --- Submit Review via Web3Forms --- */
+  // ⚠️ REPLACE THIS with your Web3Forms access key from https://web3forms.com
+  const WEB3FORMS_KEY = 'aeee49f2-f2e5-4018-8bf0-526173b48130';
+
   const submitBtn = document.getElementById('submitReview');
   if (submitBtn) {
-    submitBtn.addEventListener('click', () => {
+    submitBtn.addEventListener('click', async () => {
       const name = document.getElementById('reviewName').value.trim() || 'Anonymous';
       const text = document.getElementById('reviewText').value.trim();
       const note = document.getElementById('reviewNote');
@@ -75,26 +78,53 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
       }
 
-      const stars = '★'.repeat(selectedRating) + '☆'.repeat(5 - selectedRating);
-      const subject = encodeURIComponent('Resolume HUD Review — ' + stars);
-      const body = encodeURIComponent(
-        'Rating: ' + stars + ' (' + selectedRating + '/5)\n' +
-        'Name: ' + name + '\n\n' +
-        'Review:\n' + text + '\n\n' +
-        '---\nSent from show-tools.app'
-      );
+      // Disable button while submitting
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Sending...';
 
-      window.location.href = 'mailto:showtoolsofficial@gmail.com?subject=' + subject + '&body=' + body;
+      const stars = '\u2605'.repeat(selectedRating) + '\u2606'.repeat(5 - selectedRating);
 
-      note.style.display = 'block';
-      note.style.color = 'var(--accent)';
-      note.textContent = 'Thanks! Your default email app should open — just hit send.';
+      try {
+        const response = await fetch('https://api.web3forms.com/submit', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            access_key: WEB3FORMS_KEY,
+            subject: 'Resolume HUD Review \u2014 ' + stars + ' (' + selectedRating + '/5)',
+            from_name: 'Show Tools Review',
+            name: name,
+            rating: selectedRating + '/5',
+            stars: stars,
+            review: text,
+            source: 'show-tools.app'
+          })
+        });
 
-      // Reset form
-      document.getElementById('reviewName').value = '';
-      document.getElementById('reviewText').value = '';
-      selectedRating = 0;
-      document.querySelectorAll('.star').forEach(s => s.classList.remove('star-active'));
+        const result = await response.json();
+
+        if (result.success) {
+          note.style.display = 'block';
+          note.style.color = 'var(--accent)';
+          note.textContent = 'Thanks for your review! We appreciate the feedback.';
+
+          // Reset form
+          document.getElementById('reviewName').value = '';
+          document.getElementById('reviewText').value = '';
+          selectedRating = 0;
+          document.querySelectorAll('.star').forEach(s => s.classList.remove('star-active'));
+        } else {
+          note.style.display = 'block';
+          note.style.color = '#ff6b6b';
+          note.textContent = 'Something went wrong. Please try again.';
+        }
+      } catch (err) {
+        note.style.display = 'block';
+        note.style.color = '#ff6b6b';
+        note.textContent = 'Connection error. Please try again later.';
+      }
+
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Submit Review';
     });
   }
 });
