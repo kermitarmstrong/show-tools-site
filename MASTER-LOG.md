@@ -4,6 +4,19 @@ Chronological record of Claude Code work sessions on the Show Tools website.
 
 ---
 
+## 2026-06-18 (b) — Hero headline two-line + homepage spacing tighten
+
+**Goal:** Small visual refinements to the homepage hero and vertical rhythm. No new colors/fonts/style.
+
+### Changes
+- **Hero headline → exactly two lines (`index.html`, `css/style.css`):** Replaced the space between "Tools Built for" and the highlighted span with a hard `<br>` so line 1 is "Tools Built for" and line 2 is "Live Shows". Added `white-space: nowrap` to `.hero h1 .highlight` so "Live Shows" never splits across lines. (Line 1 still wraps naturally only on extremely narrow screens — chosen over `nowrap` there to avoid horizontal overflow.)
+- **Hero spacing tighten (`css/style.css`):** `.hero h1` line-height `1` → `0.92` and its `margin-bottom` `var(--space-md)` → `var(--space-sm)`; `.hero-tag` margin-bottom `var(--space-md)` → `var(--space-sm)`. Tightens the tag → headline → subtitle stack. Subtle; responsive sizing untouched.
+- **Section rhythm — group "Why BLOOPER" with the showcase (`index.html`):** Added inline `padding-bottom: var(--space-sm)` to `#featured`. The gap from the BLOOPER showcase to the Why BLOOPER strip is now ~2rem (1rem featured-bottom + 1rem section-tight top) so the highlights read as belonging to BLOOPER, while the Why BLOOPER → "More in the Toolkit" gap stays ~9rem (8rem section bottom + 1rem top) for clear product separation. The "Why Resolume HUD" strip already lives inside the Resolume HUD section, so it stays grouped with that card — no change needed.
+
+### Verify
+- Parser-based tag-balance check passed on `index.html`. No JS touched. New CSS uses existing tokens only.
+- `SITE-ARCHITECTURE.md` unchanged — no new classes or structural changes (only property tweaks on existing rules).
+
 ## 2026-06-18 — Layout rebalance, download accordions, back-button bfcache fix
 
 **Goal:** Three changes without breaking existing functionality, plus living docs.
