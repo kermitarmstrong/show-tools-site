@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="BLOOPER — A radial water-ripple displacement effect for Resolume Arena. Fire expanding ripples that warp your video, lock them to BPM, and stack up to 16 at once.">
+  <title>BLOOPER — Resolume Ripple Effect — Show Tools</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="favicon-192.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+</head>
+<body>
+  <!-- Page Loader (hidden by default, shown via JS on first visit) -->
+  <script>
+    if (sessionStorage.getItem('showtools_loaded')) {
+      document.write('<style>#pageLoader{display:none}</style>');
+    }
+  </script>
+  <div class="page-loader" id="pageLoader">
+    <canvas class="loader-canvas" id="loaderCanvas"></canvas>
+    <div class="loader-content">
+      <div class="loader-logo">SHOW<span class="logo-accent">TOOLS</span></div>
+    </div>
+    <div class="loader-progress">
+      <div class="loader-bar-track">
+        <div class="loader-bar-fill"></div>
+      </div>
+      <span class="loader-percent">0%</span>
+    </div>
+  </div>
+
+  <!-- Page Transition -->
+  <div class="page-transition" id="pageTransition">
+    <div class="transition-logo">
+      <img src="st-logo.png" alt="" width="240" height="240">
+    </div>
+  </div>
+
+  <div class="cursor-dot"></div>
+  <div class="cursor-ring"></div>
+  <canvas id="bg-canvas"></canvas>
+  <div class="scan-lines"></div>
+  <div class="grain-overlay"></div>
+
+  <!-- Navigation -->
+  <nav class="nav">
+    <a href="index.html" class="nav-logo">
+      <span class="logo-icon">ST</span>
+      <span>SHOW<span class="logo-accent">TOOLS</span></span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li class="nav-dropdown">
+        <a href="products.html" class="active">Products</a>
+        <ul class="nav-dropdown-menu">
+          <li><a href="blooper.html">BLOOPER</a></li>
+          <li><a href="resolume-hud.html">Resolume HUD</a></li>
+        </ul>
+      </li>
+      <li><a href="downloads.html">Downloads</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <button class="nav-toggle" aria-label="Toggle navigation">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </nav>
+
+  <div class="page-wrapper">
+
+    <!-- Product Hero -->
+    <section class="section page-header">
+      <div class="section-inner">
+        <div class="section-label" style="justify-content: center;"><span></span>Product Details</div>
+        <h1>BLOOPER</h1>
+        <p>A radial water-ripple displacement effect for Resolume Arena. Fire an expanding ripple that warps your video as it travels — across a clip, a layer, or the whole composition.</p>
+        <div style="display: flex; gap: 0.75rem; justify-content: center; margin-top: 1rem; flex-wrap: wrap;">
+          <span class="tag">.dll Effect</span>
+          <span class="tag">Easy to Use</span>
+          <span class="tag">BPM Sync</span>
+          <span class="tag">Bump Trigger</span>
+          <span class="tag">Windows</span>
+          <span class="tag" style="font-size: 0.6rem;">v1.2</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Detail Content -->
+    <section class="section" style="padding-top: 0;">
+      <div class="section-inner">
+
+        <div class="update-banner reveal">
+          <span class="pulse-dot"></span>
+          <strong>New Release — BLOOPER v1.2!</strong> — A free ripple/pulse effect for Resolume. Trigger it live, auto-loop it, or lock it to your BPM.
+        </div>
+
+        <div class="detail-content">
+
+          <div class="detail-main">
+
+            <!-- Gallery — defaults to looping demo video -->
+            <div class="detail-gallery reveal" id="detailGallery">
+              <div class="detail-gallery-main">
+                <img src="assets/blooper-main.jpg" alt="BLOOPER ripple effect" id="galleryMainImg" loading="lazy" style="display:none;">
+                <div class="gallery-video-container" id="galleryVideoContainer" style="display:block;">
+                  <iframe src="https://www.youtube.com/embed/yvfiCFw885E?autoplay=1&mute=1&loop=1&playlist=yvfiCFw885E&controls=0&showinfo=0&rel=0&modestbranding=1&playsinline=1&iv_load_policy=3&disablekb=1&fs=0&vq=hd1080" id="galleryVideoFrame" title="BLOOPER Demo" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+                </div>
+              </div>
+              <div class="detail-gallery-thumbs detail-gallery-thumbs-4">
+                <div class="detail-thumb-lg active" data-type="video" data-src="https://www.youtube.com/embed/yvfiCFw885E?autoplay=1&mute=1&loop=1&playlist=yvfiCFw885E&controls=0&showinfo=0&rel=0&modestbranding=1&playsinline=1&iv_load_policy=3&disablekb=1&fs=0&vq=hd1080" onclick="switchGallery(this)">
+                  <div class="thumb-video-overlay">
+                    <span class="thumb-play-icon">▶</span>
+                  </div>
+                  <img src="https://img.youtube.com/vi/yvfiCFw885E/mqdefault.jpg" alt="Demo Video" loading="lazy">
+                </div>
+                <div class="detail-thumb-lg" data-type="image" data-src="assets/blooper-main.jpg" onclick="switchGallery(this)">
+                  <img src="assets/blooper-main.jpg" alt="BLOOPER in action" loading="lazy">
+                </div>
+                <div class="detail-thumb-lg" data-type="image" data-src="assets/blooper-params.png" onclick="switchGallery(this)">
+                  <img src="assets/blooper-params.png" alt="BLOOPER parameters" loading="lazy">
+                </div>
+                <div class="detail-thumb-lg" data-type="video" data-src="https://www.youtube.com/embed/5DLjDBEYCxg?rel=0&modestbranding=1" onclick="switchGallery(this)">
+                  <div class="thumb-video-overlay">
+                    <span class="thumb-play-icon">▶</span>
+                  </div>
+                  <img src="https://img.youtube.com/vi/5DLjDBEYCxg/mqdefault.jpg" alt="Tutorial Video" loading="lazy">
+                </div>
+              </div>
+            </div>
+
+            <div class="detail-section reveal">
+              <h2>Overview</h2>
+              <p>
+                BLOOPER adds an expanding water-ripple distortion to any video in Resolume Arena. 
+                Hit the Bump button — or trigger it from a MIDI controller, clip, or automation — and 
+                a ripple radiates outward from the center of the frame, warping the underlying video as 
+                it travels. Stack multiple ripples, let them pulse automatically, or lock them to your 
+                music's BPM.
+              </p>
+              <p>
+                Ripples are true circles on any canvas — 16:9, vertical, or square — so they never come 
+                out stretched or egg-shaped regardless of your composition resolution. Drop it on a clip, 
+                a layer, or the whole composition and shape the result with a handful of intuitive controls.
+              </p>
+            </div>
+
+            <div class="detail-section reveal">
+              <h2>Key Features</h2>
+              <div class="detail-features-grid">
+                <div class="detail-feature">
+                  <div class="detail-feature-icon">◉</div>
+                  <div>
+                    <h4>Bump to Fire</h4>
+                    <p>One button sends a ripple radiating across your video. Map it to MIDI or automation and fire it live on the beat.</p>
+                  </div>
+                </div>
+                <div class="detail-feature">
+                  <div class="detail-feature-icon">⟐</div>
+                  <div>
+                    <h4>Stack Up to 16</h4>
+                    <p>Fire ripples rapidly and up to 16 travel at once. Where they overlap they reinforce — perfect for hits and drops.</p>
+                  </div>
+                </div>
+                <div class="detail-feature">
+                  <div class="detail-feature-icon">◈</div>
+                  <div>
+                    <h4>BPM &amp; Bar Sync</h4>
+                    <p>Lock ripple speed and cadence to your track. BPM-synced and Bar-triggered modes keep everything perfectly in time.</p>
+                  </div>
+                </div>
+                <div class="detail-feature">
+                  <div class="detail-feature-icon">⬡</div>
+                  <div>
+                    <h4>Auto Loop</h4>
+                    <p>Turn on Auto Loop for hands-free, steady pulsing — no clicking required. Dial in the rate to taste.</p>
+                  </div>
+                </div>
+                <div class="detail-feature">
+                  <div class="detail-feature-icon">◇</div>
+                  <div>
+                    <h4>True Circles, Any Canvas</h4>
+                    <p>Ripples stay perfectly round on 16:9, vertical, or square comps — never stretched or egg-shaped.</p>
+                  </div>
+                </div>
+                <div class="detail-feature">
+                  <div class="detail-feature-icon">⊞</div>
+                  <div>
+                    <h4>Clip, Layer or Comp</h4>
+                    <p>Drop BLOOPER onto a single clip, an entire layer, or the whole composition. Shape it with Speed, Ring Width, Amplitude, Center, and Decay.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="detail-section reveal">
+              <h2>Installation</h2>
+              <p>
+                BLOOPER ships as a single Windows plugin (<strong>BLOOPER.dll</strong>) inside a zip with its 
+                readme and license. Installing it takes about a minute:
+              </p>
+              <div class="detail-steps">
+                <div class="detail-step">
+                  <div class="detail-step-num">01</div>
+                  <div>
+                    <h4>Download &amp; Unzip</h4>
+                    <p>Grab the zip from the download page and extract it anywhere. Inside you'll find BLOOPER.dll, a readme, and the license.</p>
+                  </div>
+                </div>
+                <div class="detail-step">
+                  <div class="detail-step-num">02</div>
+                  <div>
+                    <h4>Drop the .dll in Extra Effects</h4>
+                    <p>Copy BLOOPER.dll into your Resolume <em>Extra Effects</em> folder — usually <code>Documents\Resolume Arena\Extra Effects\</code>. Create the folder if it doesn't exist.</p>
+                  </div>
+                </div>
+                <div class="detail-step">
+                  <div class="detail-step-num">03</div>
+                  <div>
+                    <h4>Restart Resolume</h4>
+                    <p>Fully quit and relaunch Resolume — it only scans for plugins on startup. BLOOPER then appears in your Effects panel.</p>
+                  </div>
+                </div>
+                <div class="detail-step">
+                  <div class="detail-step-num">04</div>
+                  <div>
+                    <h4>Drag &amp; Bump</h4>
+                    <p>Drag BLOOPER onto any clip, layer, or composition and click Bump to fire your first ripple. Full setup is in the readme inside the zip.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="detail-section reveal">
+              <h2>Parameters</h2>
+              <div class="detail-features-grid">
+                <div class="detail-feature">
+                  <div class="detail-feature-icon">→</div>
+                  <div>
+                    <h4>Speed</h4>
+                    <p>How fast the ripple travels from center to edge. (In synced modes, speed is set by BPM and Musical Division instead.)</p>
+                  </div>
+                </div>
+                <div class="detail-feature">
+                  <div class="detail-feature-icon">→</div>
+                  <div>
+                    <h4>Ring Width</h4>
+                    <p>Thickness of the ripple band. Thin = sharp, defined ring; wide = soft, broad swell.</p>
+                  </div>
+                </div>
+                <div class="detail-feature">
+                  <div class="detail-feature-icon">→</div>
+                  <div>
+                    <h4>Amplitude</h4>
+                    <p>How strongly the ripple distorts the video. Low = subtle shimmer; high = dramatic warping.</p>
+                  </div>
+                </div>
+                <div class="detail-feature">
+                  <div class="detail-feature-icon">→</div>
+                  <div>
+                    <h4>Center X / Center Y</h4>
+                    <p>Where the ripple originates. 0.5 / 0.5 is frame center — move them to fire from a corner or edge.</p>
+                  </div>
+                </div>
+                <div class="detail-feature">
+                  <div class="detail-feature-icon">→</div>
+                  <div>
+                    <h4>Decay</h4>
+                    <p>How quickly the ripple fades as it expands. High decay dies out early; low decay travels the full frame.</p>
+                  </div>
+                </div>
+                <div class="detail-feature">
+                  <div class="detail-feature-icon">→</div>
+                  <div>
+                    <h4>Bump</h4>
+                    <p>The trigger. Click or map it to MIDI/automation to fire a single ripple. Fire rapidly to stack ripples.</p>
+                  </div>
+                </div>
+                <div class="detail-feature">
+                  <div class="detail-feature-icon">→</div>
+                  <div>
+                    <h4>Auto Loop &amp; Loop Rate</h4>
+                    <p>Spawn ripples automatically at a steady rate — from one every 10 seconds up to several per second.</p>
+                  </div>
+                </div>
+                <div class="detail-feature">
+                  <div class="detail-feature-icon">→</div>
+                  <div>
+                    <h4>Speed Mode</h4>
+                    <p>Free (manual), BPM-synced (locks to composition BPM), or Bar-triggered (fires on the downbeat of each bar).</p>
+                  </div>
+                </div>
+                <div class="detail-feature">
+                  <div class="detail-feature-icon">→</div>
+                  <div>
+                    <h4>Musical Division</h4>
+                    <p>In synced modes, set which note value ripples lock to: 1/16, 1/8, 1/4, 1/2, 1 bar, 2 bars, or 4 bars.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Sidebar -->
+          <div class="detail-sidebar reveal">
+            <div class="detail-sidebar-card">
+              <h3>Download</h3>
+              <a href="downloads.html#blooper" class="btn btn-primary" style="width: 100%; justify-content: center; margin-bottom: 1rem;">
+                <span class="btn-icon">↓</span> Download Now
+              </a>
+              <div class="detail-sidebar-meta">
+                <div class="detail-meta-row">
+                  <span class="detail-meta-label">Version</span>
+                  <span class="detail-meta-value">v1.2</span>
+                </div>
+                <div class="detail-meta-row">
+                  <span class="detail-meta-label">Format</span>
+                  <span class="detail-meta-value">.zip → .dll plugin</span>
+                </div>
+                <div class="detail-meta-row">
+                  <span class="detail-meta-label">Platform</span>
+                  <span class="detail-meta-value">Windows 10/11 (64-bit)</span>
+                </div>
+                <div class="detail-meta-row">
+                  <span class="detail-meta-label">Requires</span>
+                  <span class="detail-meta-value">Resolume Arena 7.3.1+</span>
+                </div>
+                <div class="detail-meta-row">
+                  <span class="detail-meta-label">Price</span>
+                  <span class="detail-meta-value" style="color: var(--accent);">Free</span>
+                </div>
+                <div class="detail-meta-row">
+                  <span class="detail-meta-label">Downloaded</span>
+                  <span class="detail-meta-value" id="blooperDetailCount">—</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-left">
+        © 2026 Show Tools. All rights reserved.
+      </div>
+      <ul class="footer-links">
+        <li><a href="products.html">Products</a></li>
+        <li><a href="downloads.html">Downloads</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

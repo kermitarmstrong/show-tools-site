@@ -552,31 +552,31 @@ function initSlideshow() {
 }
 
 /* --- GitHub Download Counter --- */
-function fetchDownloadCount() {
-  const targets = [
-    document.getElementById('homeDownloadCount'),
-    document.getElementById('dlPageCount'),
-    document.getElementById('detailDownloadCount')
-  ].filter(Boolean);
+function countRepoDownloads(repo, targetIds) {
+  const targets = targetIds
+    .map(id => document.getElementById(id))
+    .filter(Boolean);
 
   if (targets.length === 0) return;
 
-  fetch('https://api.github.com/repos/kermitarmstrong/resolume-hud/releases')
+  fetch('https://api.github.com/repos/' + repo + '/releases')
     .then(res => res.json())
     .then(releases => {
       let total = 0;
-      releases.forEach(release => {
-        if (release.assets) {
-          release.assets.forEach(asset => {
-            total += asset.download_count || 0;
-          });
-        }
-      });
+      if (Array.isArray(releases)) {
+        releases.forEach(release => {
+          if (release.assets) {
+            release.assets.forEach(asset => {
+              total += asset.download_count || 0;
+            });
+          }
+        });
+      }
 
       const display = total.toLocaleString();
       targets.forEach(el => {
-        if (el.id === 'dlPageCount') {
-          el.textContent = 'Downloaded ' + display + '×';
+        if (el.classList.contains('tag-downloads')) {
+          el.textContent = '⬇ ' + display;
         } else {
           el.textContent = display + '+';
         }
@@ -585,6 +585,21 @@ function fetchDownloadCount() {
     .catch(() => {
       // Silently fail — counters just stay as "—"
     });
+}
+
+function fetchDownloadCount() {
+  // Resolume HUD
+  countRepoDownloads('kermitarmstrong/resolume-hud', [
+    'homeDownloadCount',
+    'dlPageCount',
+    'detailDownloadCount'
+  ]);
+  // BLOOPER
+  countRepoDownloads('kermitarmstrong/BLOOPER', [
+    'homeBlooperCount',
+    'blooperDlCount',
+    'blooperDetailCount'
+  ]);
 }
 
 /* --- Easter Egg: Logo Click Rainbow Mode --- */
