@@ -13,6 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initTerminalTyping();
   initPageTransitions();
   initChangelog();
+  initAccordions();
   initSlideshow();
   fetchDownloadCount();
 });
@@ -467,6 +468,23 @@ function initPageTransitions() {
   });
 }
 
+/* --- bfcache Recovery --- */
+// When the browser restores a page from the back/forward cache (e.g. pressing
+// Back after a page-transition navigation), scripts are NOT re-executed, so the
+// code that fades out #pageTransition never runs and the ST-logo overlay stays
+// stuck on screen. Detect that restore via pageshow.persisted and force the page
+// back to the same resting state a normal load leaves behind.
+window.addEventListener('pageshow', (e) => {
+  if (!e.persisted) return;
+  document.body.classList.remove('page-blurring');
+  const transition = document.getElementById('pageTransition');
+  if (transition) {
+    transition.classList.remove('entering');
+    transition.classList.add('exiting');
+    transition.style.opacity = '';
+  }
+});
+
 /* --- Changelog Toggle --- */
 function initChangelog() {
   const toggle = document.querySelector('.changelog-toggle');
@@ -477,6 +495,29 @@ function initChangelog() {
     toggle.classList.toggle('open');
     entries.classList.toggle('open');
   });
+}
+
+/* --- Collapsible Download Panels --- */
+// General accordion handler: each .download-panel-header toggles the `open` class
+// on its parent .download-panel independently. Clicks on links inside the header
+// (the quick-download button) are left to behave normally. If the page is reached
+// via a #hash that targets a panel, that panel is auto-expanded.
+function initAccordions() {
+  const headers = document.querySelectorAll('.download-panel-header');
+  headers.forEach((header) => {
+    header.addEventListener('click', (e) => {
+      if (e.target.closest('a')) return; // let the download link work
+      const panel = header.closest('.download-panel');
+      if (panel) panel.classList.toggle('open');
+    });
+  });
+
+  if (window.location.hash) {
+    const target = document.querySelector(window.location.hash);
+    if (target && target.classList.contains('download-panel')) {
+      target.classList.add('open');
+    }
+  }
 }
 
 /* --- Smooth Scroll for Anchor Links --- */

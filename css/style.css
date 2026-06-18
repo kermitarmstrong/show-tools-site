@@ -660,6 +660,58 @@ img, video {
   line-height: 1.7;
 }
 
+/* --- Compact Highlight Strip (homepage) --- */
+/* Deliberately lighter and smaller than .feature-card — a tight one/two-row strip. */
+.highlight-strip {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 1rem;
+}
+
+.highlight-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.85rem;
+  padding: 1rem 1.15rem;
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: 12px;
+  backdrop-filter: blur(10px);
+  transition: border-color var(--duration-fast);
+}
+
+.highlight-item:hover {
+  border-color: var(--border-glow);
+}
+
+.highlight-icon {
+  flex-shrink: 0;
+  width: 34px;
+  height: 34px;
+  border-radius: 9px;
+  background: var(--accent-glow);
+  border: 1px solid var(--border-glow);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  color: var(--accent);
+}
+
+.highlight-text h4 {
+  font-family: var(--font-display);
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--white);
+  margin-bottom: 0.15rem;
+}
+
+.highlight-text p {
+  font-size: 0.78rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
 /* --- Product Showcase --- */
 .product-showcase {
   background: var(--bg-secondary);
@@ -2240,6 +2292,127 @@ img, video {
 .changelog-entry p {
   font-size: 0.85rem;
   color: var(--text-secondary);
+  line-height: 1.7;
+}
+
+/* --- Collapsible Download Panels --- */
+.download-panel {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: 16px;
+  margin-bottom: 1.25rem;
+  backdrop-filter: blur(10px);
+  overflow: hidden;
+  scroll-margin-top: calc(var(--nav-height) + 1rem);
+  transition: border-color var(--duration-fast);
+}
+
+.download-panel:hover {
+  border-color: var(--border-glow);
+}
+
+.download-panel-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1.5rem 1.75rem;
+  cursor: pointer;
+  flex-wrap: wrap;
+}
+
+.download-panel-title {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  flex-wrap: wrap;
+}
+
+.download-panel-title h2 {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--white);
+}
+
+.download-panel-tags {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.download-panel-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+}
+
+.download-panel-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 9px;
+  background: var(--bg-primary);
+  border: 1px solid var(--border-subtle);
+  color: var(--accent);
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: all var(--duration-fast);
+}
+
+.download-panel-toggle:hover {
+  border-color: var(--border-glow);
+}
+
+.download-panel-toggle-icon {
+  font-size: 0.8rem;
+  transition: transform 0.3s var(--ease-out);
+}
+
+.download-panel.open .download-panel-toggle-icon {
+  transform: rotate(180deg);
+}
+
+.download-panel-body {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.5s var(--ease-out);
+}
+
+.download-panel.open .download-panel-body {
+  max-height: 2000px;
+}
+
+.download-panel-body-inner {
+  padding: 1.5rem 1.75rem 1.75rem;
+  border-top: 1px solid var(--border-subtle);
+}
+
+.download-panel-body-inner > p {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  line-height: 1.7;
+  margin-bottom: 1.5rem;
+}
+
+.download-panel-subsection {
+  margin-top: 1.75rem;
+}
+
+.download-panel-subsection h3 {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 0.5rem;
+}
+
+.download-panel-subsection p {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
   line-height: 1.7;
 }
 

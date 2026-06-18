@@ -84,171 +84,178 @@
       </div>
     </section>
 
-    <!-- BLOOPER Downloads -->
-    <section class="section" style="padding-top: 0;" id="blooper">
+    <!-- Downloads — collapsible product panels -->
+    <section class="section" style="padding-top: 0;">
       <div class="section-inner">
 
+        <!-- Consolidated update banner -->
         <div class="update-banner reveal">
           <span class="pulse-dot"></span>
-          <strong>New Release — BLOOPER v1.2!</strong> — A free radial ripple effect for Resolume. Trigger it live, auto-loop it, or lock it to your BPM.
+          <strong>What's New —</strong> BLOOPER v1.2, a free radial ripple effect for Resolume · Resolume HUD v1.5 with a rebuilt API connection, auto-reconnect, and code signing (no more SmartScreen warnings).
         </div>
 
-        <div class="download-section reveal">
-          <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 0.5rem; flex-wrap: wrap;">
-            <h2>BLOOPER — Resolume Ripple Effect</h2>
-            <span class="tag" style="font-size: 0.6rem;">v1.2</span>
-            <span class="tag tag-free" style="font-size: 0.6rem;">FREE</span>
-            <span class="tag tag-downloads" style="font-size: 0.6rem;" id="blooperDlCount">⬇ —</span>
-          </div>
-          <p>
-            A radial water-ripple displacement effect for Resolume Arena. Ships as a zip containing the 
-            BLOOPER.dll plugin, a readme, and the license. Windows only. Requires Resolume Arena 7.3.1 or later 
-            (also works in Avenue).
-          </p>
-
-          <div class="download-items">
-            <!-- Plugin zip — DIRECT DOWNLOAD -->
-            <div class="download-item download-item-primary">
-              <div class="download-item-info">
-                <div class="download-item-icon">⬇</div>
-                <div class="download-item-text">
-                  <h4>BLOOPER Plugin</h4>
-                  <span>Windows x64 · .zip → BLOOPER.dll + readme + license</span>
-                </div>
+        <!-- BLOOPER Panel -->
+        <div class="download-panel reveal" id="blooper">
+          <div class="download-panel-header">
+            <div class="download-panel-title">
+              <h2>BLOOPER — Resolume Ripple Effect</h2>
+              <div class="download-panel-tags">
+                <span class="tag" style="font-size: 0.6rem;">v1.2</span>
+                <span class="tag tag-free" style="font-size: 0.6rem;">FREE</span>
+                <span class="tag tag-downloads" style="font-size: 0.6rem;" id="blooperDlCount">⬇ —</span>
               </div>
+            </div>
+            <div class="download-panel-actions">
               <a href="https://github.com/kermitarmstrong/BLOOPER/releases/latest/download/BLOOPER.zip" class="download-btn download-btn-primary">
                 ↓ Free Download
               </a>
+              <button class="download-panel-toggle" aria-label="Toggle details">
+                <span class="download-panel-toggle-icon">▼</span>
+              </button>
             </div>
+          </div>
+          <div class="download-panel-body">
+            <div class="download-panel-body-inner">
+              <p>
+                A radial water-ripple displacement effect for Resolume Arena. Ships as a zip containing the
+                BLOOPER.dll plugin, a readme, and the license. Windows only. Requires Resolume Arena 7.3.1 or later
+                (also works in Avenue).
+              </p>
 
-            <!-- Tutorial Video -->
-            <div class="download-item">
-              <div class="download-item-info">
-                <div class="download-item-icon">🎬</div>
-                <div class="download-item-text">
-                  <h4>Tutorial Video</h4>
-                  <span>Walkthrough of every parameter and how to use them</span>
+              <div class="download-items">
+                <!-- Tutorial Video -->
+                <div class="download-item">
+                  <div class="download-item-info">
+                    <div class="download-item-icon">🎬</div>
+                    <div class="download-item-text">
+                      <h4>Tutorial Video</h4>
+                      <span>Walkthrough of every parameter and how to use them</span>
+                    </div>
+                  </div>
+                  <a href="https://youtu.be/5DLjDBEYCxg" target="_blank" class="download-btn">
+                    ↓ Watch
+                  </a>
+                </div>
+
+                <!-- Demo Video -->
+                <div class="download-item">
+                  <div class="download-item-info">
+                    <div class="download-item-icon">▶</div>
+                    <div class="download-item-text">
+                      <h4>Demo Video</h4>
+                      <span>See BLOOPER in action across different content</span>
+                    </div>
+                  </div>
+                  <a href="https://youtu.be/yvfiCFw885E" target="_blank" class="download-btn">
+                    ↓ Watch
+                  </a>
                 </div>
               </div>
-              <a href="https://youtu.be/5DLjDBEYCxg" target="_blank" class="download-btn">
-                ↓ Watch
-              </a>
-            </div>
 
-            <!-- Demo Video -->
-            <div class="download-item">
-              <div class="download-item-info">
-                <div class="download-item-icon">▶</div>
-                <div class="download-item-text">
-                  <h4>Demo Video</h4>
-                  <span>See BLOOPER in action across different content</span>
-                </div>
+              <!-- Quick Install -->
+              <div class="download-panel-subsection">
+                <h3>Quick Install</h3>
+                <p style="margin-bottom: 0;">
+                  <span style="color: var(--white); font-weight: 500;">1.</span> Download and unzip the file anywhere.
+                  <br>
+                  <span style="color: var(--white); font-weight: 500;">2.</span> Copy <span style="color: var(--accent);">BLOOPER.dll</span> into your Resolume <em>Extra Effects</em> folder — usually <span style="color: var(--accent);">Documents\Resolume Arena\Extra Effects\</span> (create it if it doesn't exist).
+                  <br>
+                  <span style="color: var(--white); font-weight: 500;">3.</span> Fully quit and relaunch Resolume — it only scans for plugins on startup.
+                  <br>
+                  <span style="color: var(--white); font-weight: 500;">4.</span> Find <span style="color: var(--accent);">BLOOPER</span> in your Effects panel and drag it onto any clip, layer, or composition. Full details are in the readme inside the zip.
+                </p>
               </div>
-              <a href="https://youtu.be/yvfiCFw885E" target="_blank" class="download-btn">
-                ↓ Watch
-              </a>
+
+              <!-- System Requirements -->
+              <div class="download-panel-subsection">
+                <h3>System Requirements</h3>
+                <p style="margin-bottom: 0;">
+                  <span style="color: var(--white); font-weight: 500;">OS:</span> Windows 10 / 11 (64-bit)
+                  <br>
+                  <span style="color: var(--white); font-weight: 500;">Software:</span> Resolume Arena 7.3.1 or later (also works in Avenue)
+                  <br>
+                  <span style="color: var(--white); font-weight: 500;">Note:</span> Windows plugin (.dll) — does not work on macOS
+                </p>
+              </div>
             </div>
           </div>
         </div>
 
-        <!-- Quick Install -->
-        <div class="download-section reveal" style="margin-top: 2rem;">
-          <h2 style="font-size: 1.2rem;">Quick Install</h2>
-          <p style="margin-bottom: 0;">
-            <span style="color: var(--white); font-weight: 500;">1.</span> Download and unzip the file anywhere.
-            <br>
-            <span style="color: var(--white); font-weight: 500;">2.</span> Copy <span style="color: var(--accent);">BLOOPER.dll</span> into your Resolume <em>Extra Effects</em> folder — usually <span style="color: var(--accent);">Documents\Resolume Arena\Extra Effects\</span> (create it if it doesn't exist).
-            <br>
-            <span style="color: var(--white); font-weight: 500;">3.</span> Fully quit and relaunch Resolume — it only scans for plugins on startup.
-            <br>
-            <span style="color: var(--white); font-weight: 500;">4.</span> Find <span style="color: var(--accent);">BLOOPER</span> in your Effects panel and drag it onto any clip, layer, or composition. Full details are in the readme inside the zip.
-          </p>
-        </div>
-
-        <!-- BLOOPER System Requirements -->
-        <div class="download-section reveal" style="margin-top: 2rem;">
-          <h2 style="font-size: 1.2rem;">System Requirements</h2>
-          <p style="margin-bottom: 0;">
-            <span style="color: var(--white); font-weight: 500;">OS:</span> Windows 10 / 11 (64-bit)
-            <br>
-            <span style="color: var(--white); font-weight: 500;">Software:</span> Resolume Arena 7.3.1 or later (also works in Avenue)
-            <br>
-            <span style="color: var(--white); font-weight: 500;">Note:</span> Windows plugin (.dll) — does not work on macOS
-          </p>
-        </div>
-
-      </div>
-    </section>
-
-    <div class="divider" style="max-width: 1100px; margin-left: auto; margin-right: auto;"></div>
-
-    <section class="section" style="padding-top: 0;" id="resolume-hud">
-      <div class="section-inner">
-
-        <!-- Resolume HUD Downloads -->
-        <div class="update-banner reveal">
-          <span class="pulse-dot"></span>
-          <strong>v1.5 Now Available!</strong> — Rebuilt API connection, auto-reconnect, new Boolean Indicator, and now code signed — no more SmartScreen warnings.
-        </div>
-
-        <div class="download-section reveal">
-          <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 0.5rem; flex-wrap: wrap;">
-            <h2>Resolume HUD — Widget Creator</h2>
-            <span class="tag" style="font-size: 0.6rem;">v1.5</span>
-            <span class="tag tag-free" style="font-size: 0.6rem;">FREE</span>
-            <span class="tag tag-downloads" style="font-size: 0.6rem;" id="dlPageCount">⬇ —</span>
-          </div>
-          <p>
-            Custom overlay widgets for real-time Resolume parameter monitoring via OSC. 
-            Windows only. Requires Resolume Arena or Avenue with OSC enabled.
-          </p>
-
-          <div class="download-items">
-            <!-- Installer — DIRECT DOWNLOAD, no modal -->
-            <div class="download-item download-item-primary">
-              <div class="download-item-info">
-                <div class="download-item-icon">⬇</div>
-                <div class="download-item-text">
-                  <h4>Resolume HUD Installer</h4>
-                  <span>Windows x64 · .exe · Setup Wizard</span>
-                </div>
+        <!-- Resolume HUD Panel -->
+        <div class="download-panel reveal" id="resolume-hud">
+          <div class="download-panel-header">
+            <div class="download-panel-title">
+              <h2>Resolume HUD — Widget Creator</h2>
+              <div class="download-panel-tags">
+                <span class="tag" style="font-size: 0.6rem;">v1.5</span>
+                <span class="tag tag-free" style="font-size: 0.6rem;">FREE</span>
+                <span class="tag tag-downloads" style="font-size: 0.6rem;" id="dlPageCount">⬇ —</span>
               </div>
+            </div>
+            <div class="download-panel-actions">
               <a href="https://github.com/kermitarmstrong/resolume-hud/releases/latest/download/ResolumeHud.exe" class="download-btn download-btn-primary">
                 ↓ Free Download
               </a>
+              <button class="download-panel-toggle" aria-label="Toggle details">
+                <span class="download-panel-toggle-icon">▼</span>
+              </button>
             </div>
+          </div>
+          <div class="download-panel-body">
+            <div class="download-panel-body-inner">
+              <p>
+                Custom overlay widgets for real-time Resolume parameter monitoring via OSC or the Web Server REST API.
+                Windows only. Requires Resolume Arena or Avenue with OSC enabled.
+              </p>
 
-            <!-- Readme -->
-            <div class="download-item">
-              <div class="download-item-info">
-                <div class="download-item-icon">📄</div>
-                <div class="download-item-text">
-                  <h4>Instruction Manual</h4>
-                  <span>.pdf · Complete guide — OSC setup, Web Server API, widget reference</span>
+              <div class="download-items">
+                <!-- Instruction Manual -->
+                <div class="download-item">
+                  <div class="download-item-info">
+                    <div class="download-item-icon">📄</div>
+                    <div class="download-item-text">
+                      <h4>Instruction Manual</h4>
+                      <span>.pdf · Complete guide — OSC setup, Web Server API, widget reference</span>
+                    </div>
+                  </div>
+                  <a href="assets/resolume-hud-guide.pdf" target="_blank" class="download-btn">
+                    ↓ View / Download Instruction Manual
+                  </a>
+                </div>
+
+                <!-- Tutorial Video -->
+                <div class="download-item">
+                  <div class="download-item-info">
+                    <div class="download-item-icon">🎬</div>
+                    <div class="download-item-text">
+                      <h4>Tutorial Video</h4>
+                      <span>Full walkthrough from install to first widget</span>
+                    </div>
+                  </div>
+                  <a href="https://youtu.be/qduGUrsTPW4" target="_blank" class="download-btn">
+                    ↓ Watch
+                  </a>
                 </div>
               </div>
-              <a href="assets/resolume-hud-guide.pdf" target="_blank" class="download-btn">
-                ↓ View / Download Instruction Manual
-              </a>
-            </div>
 
-            <!-- Tutorial Video -->
-            <div class="download-item">
-              <div class="download-item-info">
-                <div class="download-item-icon">🎬</div>
-                <div class="download-item-text">
-                  <h4>Tutorial Video</h4>
-                  <span>Full walkthrough from install to first widget</span>
-                </div>
+              <!-- System Requirements -->
+              <div class="download-panel-subsection">
+                <h3>System Requirements</h3>
+                <p style="margin-bottom: 0;">
+                  <span style="color: var(--white); font-weight: 500;">OS:</span> Windows 10 / 11 (64-bit)
+                  <br>
+                  <span style="color: var(--white); font-weight: 500;">Software:</span> Resolume Arena or Avenue (with OSC enabled)
+                  <br>
+                  <span style="color: var(--white); font-weight: 500;">Network:</span> Localhost OSC (no external network required)
+                  <br>
+                  <span style="color: var(--white); font-weight: 500;">RAM:</span> Minimal footprint — runs alongside your show
+                </p>
               </div>
-              <a href="https://youtu.be/qduGUrsTPW4" target="_blank" class="download-btn">
-                ↓ Watch
-              </a>
             </div>
           </div>
         </div>
 
-        <!-- Buy Me A Beer — Friendly, non-blocking -->
+        <!-- Buy Me A Beer — below both panels, shown once -->
         <div class="support-card reveal">
           <div class="support-card-inner">
             <div class="support-card-icon">🍺</div>
@@ -262,26 +269,12 @@
           </div>
         </div>
 
-        <!-- System Requirements -->
-        <div class="download-section reveal" style="margin-top: 2rem;">
-          <h2 style="font-size: 1.2rem;">System Requirements</h2>
-          <p style="margin-bottom: 0;">
-            <span style="color: var(--white); font-weight: 500;">OS:</span> Windows 10 / 11 (64-bit)
-            <br>
-            <span style="color: var(--white); font-weight: 500;">Software:</span> Resolume Arena or Avenue (with OSC enabled)
-            <br>
-            <span style="color: var(--white); font-weight: 500;">Network:</span> Localhost OSC (no external network required)
-            <br>
-            <span style="color: var(--white); font-weight: 500;">RAM:</span> Minimal footprint — runs alongside your show
-          </p>
-        </div>
-
         <div class="divider"></div>
 
-        <!-- Changelog -->
+        <!-- Resolume HUD Changelog -->
         <div class="changelog reveal">
           <button class="changelog-toggle">
-            <span>Changelog</span>
+            <span>Resolume HUD — Changelog</span>
             <span class="changelog-toggle-icon">▼</span>
           </button>
           <div class="changelog-entries">
